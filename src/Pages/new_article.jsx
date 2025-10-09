@@ -2,38 +2,27 @@ import React from 'react';
 import Nav from '../Component/nav';
 import NewsCards from '../Component/news_cards';
 import ArticleRow from '../Component/article_row';
+import Footer from '../Component/footer';
 
 const NewArticle = () => {
   return (
     <div className="min-h-screen bg-gray-900">
       <Nav />
-      
-      {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-4xl font-bold mb-8">
-            <span className="text-cyan-400">News & Articles</span>
-          </h1>
-          <p className="text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Stay updated with the latest developments in industrial flooring technology and industry insights.
-          </p>
-        </div>
-      </section>
 
       {/* Content Section */}
-      <section className="py-16 bg-gray-900">
+      <section className="py-8 bg-gray-900">
         <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* News Section - Left Side */}
             <div>
-              <div className="flex items-center justify-between mb-8">
-                <h2 className="text-3xl font-bold text-white">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold text-white">
                   Latest <span className="text-cyan-400">News</span>
                 </h2>
               </div>
               
               {/* News Grid - 2x2 */}
-              <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="grid grid-cols-2 gap-3 mb-4">
                 <NewsCards
                   title="New Industrial Flooring Technology Breakthrough"
                   description="Revolutionary synthetic fiber reinforcement technology achieves 40% stronger industrial floors."
@@ -80,14 +69,14 @@ const NewArticle = () => {
 
             {/* Articles Section - Right Side */}
             <div>
-              <div className="mb-8">
-                <h2 className="text-3xl font-bold text-white">
+              <div className="mb-6">
+                <h2 className="text-2xl font-bold text-white">
                   Technical <span className="text-cyan-400">Articles</span>
                 </h2>
               </div>
               
-              {/* Scrollable Articles List - Same height as news section */}
-              <div className="h-[500px] overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-cyan-400 space-y-4 pr-2">
+              {/* Scrollable Articles List - Reduced height */}
+              <div className="h-[465px] overflow-y-auto scrollbar-thin scrollbar-track-gray-800 scrollbar-thumb-cyan-400 space-y-3 pr-2">
                 <ArticleRow
                   title="Understanding Steel Fiber Reinforcement in Industrial Flooring"
                   date="October 1, 2025"
@@ -154,46 +143,33 @@ const NewArticle = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="text-white font-bold text-xl mb-4">
-              <span className="text-cyan-400">CMS</span>
-              <span className="text-xs ml-1">◆</span>
+      {/* Quote Section */}
+      <section className="py-8 bg-gray-800">
+        <div className="max-w-3xl mx-auto px-8 text-center">
+          <div className="relative">
+            {/* Quote Icon */}
+            <div className="flex justify-center mb-4">
+              <svg className="w-8 h-8 text-cyan-400" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-10zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
+              </svg>
             </div>
-            <p className="text-gray-400 text-sm">
-              Your trusted Partner in Industrial Floor Solutions
-            </p>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Menu</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>Home</li>
-              <li>Product</li>
-              <li>Project Reference</li>
-              <li>News & Articles</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <div className="text-gray-400 text-sm space-y-2">
-              <p>19 Soi Ramintra 109 Intersection 8, Khan Udom, Bueng Kum, Bangkok 10230</p>
-              <p>081 712 3544 / 062 479 4215</p>
-              <p>siamgrout@civilmastersolution.com</p>
-              <p>export@civilmastersolution.com</p>
+            
+            {/* Quote Text */}
+            <blockquote className="text-lg md:text-xl font-light text-white mb-4 leading-relaxed">
+              "Excellence in industrial flooring builds the foundation for success."
+            </blockquote>
+            
+            {/* Author */}
+            <div className="text-gray-300">
+              <p className="text-sm font-medium text-cyan-400 mb-1">Who is who</p>
+              <p className="text-xs">Chief Engineering Officer, CMS</p>
             </div>
-          </div>
-          
-          <div className="bg-blue-900 p-6 rounded">
-            <p className="text-white text-sm">
-              Civil Master Solution © 2024
-            </p>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

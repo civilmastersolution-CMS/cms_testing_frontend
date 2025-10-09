@@ -1,20 +1,70 @@
 import React, { useState } from 'react';
 import Nav from '../Component/nav';
 import Reference1 from '../Component/reference_1';
-import Reference2 from '../Component/reference_2';
-import Reference3 from '../Component/reference_3';
-import Reference4 from '../Component/reference_4';
-import Reference5 from '../Component/reference_5';
+import Footer from '../Component/footer';
 
 const ProjectReference = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const references = [
-    { component: Reference1, title: "Warehouse A" },
-    { component: Reference2, title: "Manufacturing Plant" },
-    { component: Reference3, title: "Logistics Hub" },
-    { component: Reference4, title: "Heavy Industry" },
-    { component: Reference5, title: "Multi-Purpose Facility" }
+    {
+      title: "Industrial Floor Reinforcement – Warehouse A",
+      images: ['/images/project-references/warehouse1.jpg'],
+      location: "Bangkok, Thailand",
+      monthYear: "January 2024",
+      siteArea: "12000 m²",
+      contractMember: "ABC Engineering Co., Ltd."
+    },
+    {
+      title: "Manufacturing Plant Floor System",
+      images: [
+        '/images/project-references/manufacturing1.jpg',
+        '/images/project-references/manufacturing2.jpg'
+      ],
+      location: "Chiang Mai, Thailand",
+      monthYear: "March 2024",
+      siteArea: "8500 m²",
+      contractMember: "XYZ Construction Ltd."
+    },
+    {
+      title: "Logistics Hub Distribution Center",
+      images: [
+        '/images/project-references/logistics1.jpg',
+        '/images/project-references/logistics2.jpg',
+        '/images/project-references/logistics3.jpg'
+      ],
+      location: "Phuket, Thailand",
+      monthYear: "May 2024",
+      siteArea: "20000 m²",
+      contractMember: "DEF Industrial Co."
+    },
+    {
+      title: "Heavy Industry Processing Facility",
+      images: [
+        '/images/project-references/heavy1.jpg',
+        '/images/project-references/heavy2.jpg',
+        '/images/project-references/heavy3.jpg',
+        '/images/project-references/heavy4.jpg'
+      ],
+      location: "Rayong, Thailand",
+      monthYear: "July 2024",
+      siteArea: "15000 m²",
+      contractMember: "GHI Heavy Industries"
+    },
+    {
+      title: "Multi-Purpose Commercial Complex",
+      images: [
+        '/images/project-references/complex1.jpg',
+        '/images/project-references/complex2.jpg',
+        '/images/project-references/complex3.jpg',
+        '/images/project-references/complex4.jpg',
+        '/images/project-references/complex5.jpg'
+      ],
+      location: "Pattaya, Thailand",
+      monthYear: "September 2024",
+      siteArea: "25000 m²",
+      contractMember: "JKL Development Group"
+    }
   ];
 
   const nextSlide = () => {
@@ -29,99 +79,67 @@ const ProjectReference = () => {
     setCurrentSlide(index);
   };
 
-  const CurrentComponent = references[currentSlide].component;
+  const currentReference = references[currentSlide];
 
   return (
     <div className="min-h-screen bg-gray-900">
       <Nav />
-      
-      {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-16">
-        <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-4xl font-bold mb-8">
-            <span className="text-cyan-400">Project References</span>
-          </h1>
-          <p className="text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            Explore our portfolio of successful industrial flooring projects across Thailand and beyond.
-          </p>
-        </div>
-      </section>
 
       {/* Reference Slideshow */}
-      <section className="relative">
-        <div className="relative w-full h-screen overflow-hidden">
-          <CurrentComponent />
+      <section className="bg- py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          {/* Main Card Container */}
+          <div className="relative h-[600px] rounded-lg overflow-hidden shadow-lg">
+            <div className="w-full h-full relative transition-all duration-500">
+              <Reference1 
+                title={currentReference.title}
+                images={currentReference.images}
+                location={currentReference.location}
+                monthYear={currentReference.monthYear}
+                siteArea={currentReference.siteArea}
+                contractMember={currentReference.contractMember}
+              />
+              
+              {/* Navigation Arrows */}
+              <button 
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              
+              <button 
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
+              >
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
           
-          {/* Custom Navigation Arrows */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-8 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-cyan-400 transition-colors"
-          >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          
-          <button 
-            onClick={nextSlide}
-            className="absolute right-8 top-1/2 transform -translate-y-1/2 z-20 text-white hover:text-cyan-400 transition-colors"
-          >
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-      
-
-          {/* Slide Counter */}
-          <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-20 text-white text-sm">
-            <span className="bg-black/50 px-3 py-1 rounded-full">
-              {currentSlide + 1} / {references.length}
-            </span>
+          {/* Centered Dots Navigation */}
+          <div className="flex justify-center mt-4">
+            <div className="flex space-x-3">
+              {references.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentSlide ? 'bg-gray-900' : 'bg-gray-400 hover:bg-gray-600'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="text-white font-bold text-xl mb-4">
-              <span className="text-cyan-400">CMS</span>
-              <span className="text-xs ml-1">◆</span>
-            </div>
-            <p className="text-gray-400 text-sm">
-              Your trusted Partner in Industrial Floor Solutions
-            </p>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Menu</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>Home</li>
-              <li>Product</li>
-              <li>Project Reference</li>
-              <li>News & Articles</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <div className="text-gray-400 text-sm space-y-2">
-              <p>19 Soi Ramintra 109 Intersection 8, Khan Udom, Bueng Kum, Bangkok 10230</p>
-              <p>081 712 3544 / 062 479 4215</p>
-              <p>siamgrout@civilmastersolution.com</p>
-              <p>export@civilmastersolution.com</p>
-            </div>
-          </div>
-          
-          <div className="bg-blue-900 p-6 rounded">
-            <p className="text-white text-sm">
-              Civil Master Solution © 2024
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

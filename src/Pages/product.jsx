@@ -1,6 +1,7 @@
 import React from 'react';
 import Nav from '../Component/nav';
 import ProductCard from '../Component/product_card';
+import Footer from '../Component/footer';
 
 const Product = () => {
   const productData = [
@@ -117,45 +118,7 @@ const Product = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 py-12">
-        <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <div className="text-white font-bold text-xl mb-4">
-              <span className="text-cyan-400">CMS</span>
-              <span className="text-xs ml-1">◆</span>
-            </div>
-            <p className="text-gray-400 text-sm">
-              Your trusted Partner in Industrial Floor Solutions
-            </p>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Menu</h4>
-            <ul className="space-y-2 text-gray-400 text-sm">
-              <li>Home</li>
-              <li>Product</li>
-              <li>Project Reference</li>
-              <li>News & Articles</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-white font-semibold mb-4">Contact</h4>
-            <div className="text-gray-400 text-sm space-y-2">
-              <p>19 Soi Ramintra 109 Intersection 8, Khan Udom, Bueng Kum, Bangkok 10230</p>
-              <p>081 712 3544 / 062 479 4215</p>
-              <p>siamgrout@civilmastersolution.com</p>
-              <p>export@civilmastersolution.com</p>
-            </div>
-          </div>
-          
-          <div className="bg-blue-900 p-6 rounded">
-            <p className="text-white text-sm">
-              Civil Master Solution © 2024
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 };

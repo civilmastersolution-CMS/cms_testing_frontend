@@ -18,6 +18,8 @@ export default {
       },
       fontFamily: {
         'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        'oswald': ['Oswald', 'sans-serif'],
+        'poppins': ['Poppins', 'sans-serif'],
       }
     },
   },

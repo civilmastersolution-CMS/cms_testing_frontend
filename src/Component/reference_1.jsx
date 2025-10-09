@@ -1,89 +1,98 @@
 import React from 'react';
 
-const Reference1 = () => {
+const Reference1 = ({ 
+  title = "Industrial Floor Reinforcement – Warehouse A",
+  images = ['/images/project-references/151F29.jpg'], // Default single image
+  location = "Chiang Mai, Thailand",
+  monthYear = "July 2024",
+  siteArea = "15000 msquare",
+  contractMember = "ABC Engineering Co., Ltd."
+}) => {
+  
+  // Function to get grid layout based on number of images
+  const getGridLayout = (count) => {
+    switch(count) {
+      case 1:
+        return "grid-cols-1";
+      case 2:
+        return "grid-cols-2";
+      case 3:
+        return "grid-cols-2 grid-rows-2";
+      case 4:
+        return "grid-cols-2 grid-rows-2";
+      case 5:
+        return "grid-cols-3 grid-rows-2";
+      default:
+        return "grid-cols-1";
+    }
+  };
+
+  // Function to get specific positioning for 5 images
+  const getImageClasses = (index, total) => {
+    if (total === 3) {
+      if (index === 0) return "col-start-1 row-start-1 row-span-2"; // Left side, spans 2 rows (biggest)
+      if (index === 1) return "col-start-2 row-start-1"; // Top right
+      if (index === 2) return "col-start-2 row-start-2"; // Bottom right
+      return "";
+    }
+    if (total === 5) {
+      if (index === 0) return "col-start-1 row-start-2 col-span-2 row-span-1"; // Biggest image at left bottom
+      if (index === 1) return "col-start-3 row-start-1"; // Top right
+      if (index === 2) return "col-start-3 row-start-2"; // Middle right
+      if (index === 3) return "col-start-1 row-start-1"; // Top left
+      if (index === 4) return "col-start-2 row-start-1"; // Top middle
+      return "";
+    }
+    return "";
+  };
+
+  const imageCount = Math.min(images.length, 5); // Max 5 images
+  const displayImages = images.slice(0, 5);
+
   return (
-    <div className="bg-gray-900 text-white min-h-screen relative">
-      {/* Header */}
-      <div className="absolute top-4 left-4 z-10">
-        <div className="text-cyan-400 font-bold text-lg">CMS</div>
+    <div className="w-full h-full relative" style={{ backgroundColor: "#FFFFFF" }}>
+      
+      {/* Title at top center */}
+      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
+        <h1 className="text-black text-3xl font-bold text-center">
+          {title}
+        </h1>
       </div>
       
-      <div className="absolute top-4 right-4 z-10">
-        <div className="text-white text-sm">
-          <span>TH | EN</span>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex flex-col h-screen">
-        {/* Top - Single Large Image */}
-        <div className="flex-1 p-8">
-          <div className="bg-gray-700 rounded-lg h-full flex items-center justify-center">
-            <span className="text-gray-400 text-xl">Warehouse A - Complete Industrial Floor Project</span>
+      {/* Images Grid - Full Screen */}
+      <div className={`absolute inset-0 top-20 bottom-0 grid gap-4 p-4 ${getGridLayout(imageCount)}`}>
+        {displayImages.map((image, index) => (
+          <div 
+            key={index}
+            className={`bg-cover bg-center rounded-lg ${getImageClasses(index, imageCount)}`}
+            style={{ backgroundImage: `url(${image})` }}
+          >
+            <div className="w-full h-full bg-black bg-opacity-20 rounded-lg"></div>
           </div>
-        </div>
-
-        {/* Bottom - Content */}
-        <div className="bg-gray-800 p-8">
-          <div className="max-w-6xl mx-auto">
-            <h1 className="text-3xl font-bold mb-6 text-cyan-400 text-center">
-              Industrial Floor Reinforcement - Warehouse A
-            </h1>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-              <div>
-                <h3 className="font-semibold mb-3 text-cyan-400">Project Overview:</h3>
-                <p className="text-gray-300">
-                  Complete industrial floor reinforcement solution for a major warehouse facility. 
-                  The project involved steel fiber reinforcement across 15,000 sq.m of flooring area.
-                </p>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3 text-cyan-400">Key Features:</h3>
-                <ul className="text-gray-300 space-y-1">
-                  <li>• Steel fiber reinforcement system</li>
-                  <li>• Heavy-duty industrial flooring</li>
-                  <li>• Load-bearing capacity: 50 tons/sq.m</li>
-                  <li>• Anti-crack surface treatment</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="font-semibold mb-3 text-cyan-400">Technical Specifications:</h3>
-                <ul className="text-gray-300 space-y-1">
-                  <li>• Floor area: 15,000 sq.m</li>
-                  <li>• Steel fiber dosage: 40 kg/m³</li>
-                  <li>• Concrete strength: C30</li>
-                  <li>• Surface finish: Power float</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Navigation Dots */}
-            <div className="flex justify-center space-x-2 mt-8">
-              <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-600 rounded-full"></div>
-            </div>
+        ))}
+      </div>
+      
+      {/* Project details overlay - bottom left */}
+      <div className="absolute bottom-8 left-8 z-10 p-6 rounded-lg max-w-md border border-gray-300" style={{ backgroundColor: "#151F29" }}>
+        <div className="text-white space-y-2">
+          <div>
+            <span className="text-gray-300">Location : </span>
+            <span>{location}</span>
+          </div>
+          <div>
+            <span className="text-gray-300">Month/Year : </span>
+            <span>{monthYear}</span>
+          </div>
+          <div>
+            <span className="text-gray-300">Site Area : </span>
+            <span>{siteArea}</span>
+          </div>
+          <div>
+            <span className="text-gray-300">Contract Member : </span>
+            <span>{contractMember}</span>
           </div>
         </div>
       </div>
-
-      {/* Navigation Arrows */}
-      <button className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-cyan-400">
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <button className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-cyan-400">
-        <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
     </div>
   );
 };

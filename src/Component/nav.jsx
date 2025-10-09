@@ -1,20 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Nav = () => {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Get hero section height (approximately 100vh)
+      const heroHeight = window.innerHeight;
+      
+      // Check if scrolled past hero section
+      if (window.scrollY > heroHeight * 0.8) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    // Clean up the event listener
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const isActive = (path) => {
     return location.pathname === path || (path === '/home' && location.pathname === '/');
   };
 
   return (
-    <nav className="flex items-center justify-between px-8 py-6 bg-gray-900/90 backdrop-blur-sm">
+    <nav className={`flex items-center justify-between px-8 py-6 transition-all duration-300 ${
+      isScrolled ? 'bg-gray-900/40 backdrop-blur-sm' : 'bg-transparent'
+    }`}>
       {/* Logo */}
-      <div className="flex items-center">
-        <Link to="/" className="text-white font-bold text-xl">
-          <span className="text-cyan-400">CMS</span>
-          <span className="text-xs ml-1">◆</span>
+      <div className="flex items-center ml-4">
+        <Link to="/" className="flex items-center">
+          <img src="/images/logo.png" alt="CMS Logo" className="h-14" />
         </Link>
       </div>
 
