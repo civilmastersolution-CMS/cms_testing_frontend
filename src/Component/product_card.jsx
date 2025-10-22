@@ -4,8 +4,8 @@ import RequestMoreInformation from './request_more_information';
 const ProductCard = ({ 
   title, 
   description, 
-  successPoints, 
-  benefits, 
+  main_applicationPoints, 
+  benefit, 
   performance, 
   images = [],
   imagePosition = 'left',
@@ -48,7 +48,7 @@ const ProductCard = ({
   const handleSubmitRequestInfo = (formData) => {
     // You can handle the form submission here (e.g., send to API)
     setShowRequestInfo(false);
-    // Optionally show a success message or do something with formData
+    // Optionally show a main_application message or do something with formData
   };
 
   const ImageSection = () => (
@@ -136,21 +136,21 @@ const ProductCard = ({
             {title}
           </h2>
           <p className="text-lg mb-4">{description}</p>
-          {successPoints && (
+          {main_applicationPoints && (
             <div className="mb-4">
               <h3 className="text-3xl font-semibold mb-2">Performances</h3>
               <ul className="text-lg space-y-1">
-                {successPoints.map((point, index) => (
+                {main_applicationPoints.map((point, index) => (
                   <li key={index}>• {point}</li>
                 ))}
               </ul>
             </div>
           )}
-          {benefits && (
+          {benefit && (
             <div className="mb-4">
               <h3 className="text-3xl font-semibold mb-2">Main Applications</h3>
               <ul className="text-lg space-y-1">
-                {benefits.map((benefit, index) => (
+                {benefit.map((benefit, index) => (
                   <li key={index}>• {benefit}</li>
                 ))}
               </ul>
@@ -228,8 +228,8 @@ const ProductCard = ({
   theme="dark"
   title="Industrial Floor Reinforcement"
   description="High-performance concrete additives for industrial applications"
-  successPoints={["Increased durability", "Faster curing time", "Superior adhesion"]}
-  benefits={["Cost effective", "Easy application", "Long-lasting results"]}
+  main_applicationPoints={["Increased durability", "Faster curing time", "Superior adhesion"]}
+  benefit={["Cost effective", "Easy application", "Long-lasting results"]}
   performance={["Load capacity: 500kg/m²", "Curing time: 24 hours", "Temperature range: -20°C to 60°C"]}
   images={["https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]}
   imagePosition="left"
@@ -242,8 +242,8 @@ const ProductCard = ({
   theme="dark"
   title="Advanced Concrete Solutions"
   description="Next-generation building materials for modern construction"
-  successPoints={["Enhanced strength", "Weather resistant", "Eco-friendly formula"]}
-  benefits={["Reduced maintenance", "Energy efficient", "Sustainable construction"]}
+  main_applicationPoints={["Enhanced strength", "Weather resistant", "Eco-friendly formula"]}
+  benefit={["Reduced maintenance", "Energy efficient", "Sustainable construction"]}
   performance={["Compression strength: 40 MPa", "Water absorption: <5%", "Service life: 50+ years"]}
   images={["https://images.unsplash.com/photo-1590736969955-71cc94901144?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]}
   imagePosition="right"

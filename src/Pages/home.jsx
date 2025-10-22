@@ -6,6 +6,7 @@ import LogoLoop from '../Component/LogoLoop';
 import HeroProjectReference from '../Component/hero_project_reference';
 import PartnerCard from '../Component/partner_card';
 import CustomerCard from '../Component/customer_card';
+import ChatBot from '../Component/ChatBot';
 import { apiService } from '../services/api';
 import './home.css';
 
@@ -331,6 +332,9 @@ const Home = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };

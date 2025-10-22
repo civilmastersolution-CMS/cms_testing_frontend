@@ -4,6 +4,7 @@ import Nav from '../Component/nav';
 import Footer from '../Component/footer';
 import NewsCards from '../Component/news_cards';
 import ContentRenderer from '../Component/ContentRenderer';
+import ChatBot from '../Component/ChatBot';
 import { apiService } from '../services/api';
 
 const New = () => {
@@ -184,6 +185,9 @@ const New = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };

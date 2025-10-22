@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Component/nav';
 import ProductCard from '../Component/product_card';
 import Footer from '../Component/footer';
+import ChatBot from '../Component/ChatBot';
 import { apiService } from '../services/api';
 
 const Product = () => {
@@ -15,12 +16,15 @@ const Product = () => {
         setLoading(true);
         const response = await apiService.products.getAll();
         
+        // Sort products by position (ascending order)
+        const sortedProducts = response.data.sort((a, b) => (a.position || 999) - (b.position || 999));
+        
         // Transform API data to match the expected format
-        const transformedProducts = response.data.map((product, index) => ({
+        const transformedProducts = sortedProducts.map((product, index) => ({
           title: product.product_name,
           description: product.product_description,
-          successPoints: product.success || [],
-          benefits: product.benefit || [],
+          main_applicationPoints: product.main_application || [],
+          benefit: product.benefit || [],
           performance: product.performance || [],
           images: product.product_image || [],
           imagePosition: index % 2 === 0 ? "left" : "right", // Alternate positioning
@@ -89,8 +93,8 @@ const Product = () => {
                 key={index}
                 title={product.title}
                 description={product.description}
-                successPoints={product.successPoints}
-                benefits={product.benefits}
+                main_applicationPoints={product.main_applicationPoints}
+                benefit={product.benefit}
                 performance={product.performance}
                 images={product.images}
                 imagePosition={product.imagePosition}
@@ -108,6 +112,9 @@ const Product = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };

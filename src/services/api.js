@@ -52,6 +52,11 @@ export const apiService = {
   requestForm: {
     submit: (data) => api.post('/requestforms/', data),
   },
+
+  // Chatbot API
+  chatbot: {
+    sendMessage: (data) => api.post('/chatbot/', data),
+  },
 };
 
 export default api;

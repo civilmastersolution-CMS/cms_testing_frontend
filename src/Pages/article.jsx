@@ -4,6 +4,7 @@ import Nav from '../Component/nav';
 import Footer from '../Component/footer';
 import ArticleRow from '../Component/article_row';
 import ContentRenderer from '../Component/ContentRenderer';
+import ChatBot from '../Component/ChatBot';
 import { apiService } from '../services/api';
 
 const Article = () => {
@@ -204,6 +205,9 @@ const Article = () => {
 
       {/* Footer */}
       <Footer />
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Nav from '../Component/nav';
 import Reference1 from '../Component/reference_1';
 import Footer from '../Component/footer';
+import ChatBot from '../Component/ChatBot';
 import { apiService } from '../services/api';
 
 const ProjectReference = () => {
@@ -16,7 +17,10 @@ const ProjectReference = () => {
         setLoading(true);
         const response = await apiService.projectReferences.getAll();
         
-        const transformedReferences = response.data.map((project) => ({
+        // Sort projects by position (ascending order)
+        const sortedReferences = response.data.sort((a, b) => (a.position || 999) - (b.position || 999));
+        
+        const transformedReferences = sortedReferences.map((project) => ({
           title: project.project_name,
           images: project.project_image || [],
           location: project.location,
@@ -142,6 +146,9 @@ const ProjectReference = () => {
       </div>
 
       <Footer />
+
+      {/* ChatBot */}
+      <ChatBot />
     </div>
   );
 };
