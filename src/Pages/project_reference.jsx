@@ -1,144 +1,146 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../Component/nav';
 import Reference1 from '../Component/reference_1';
 import Footer from '../Component/footer';
+import { apiService } from '../services/api';
 
 const ProjectReference = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [references, setReferences] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const references = [
-    {
-      title: "Industrial Floor Reinforcement – Warehouse A",
-      images: ['/images/project-references/warehouse1.jpg'],
-      location: "Bangkok, Thailand",
-      monthYear: "January 2024",
-      siteArea: "12000 m²",
-      contractMember: "ABC Engineering Co., Ltd."
-    },
-    {
-      title: "Manufacturing Plant Floor System",
-      images: [
-        '/images/project-references/manufacturing1.jpg',
-        '/images/project-references/manufacturing2.jpg'
-      ],
-      location: "Chiang Mai, Thailand",
-      monthYear: "March 2024",
-      siteArea: "8500 m²",
-      contractMember: "XYZ Construction Ltd."
-    },
-    {
-      title: "Logistics Hub Distribution Center",
-      images: [
-        '/images/project-references/logistics1.jpg',
-        '/images/project-references/logistics2.jpg',
-        '/images/project-references/logistics3.jpg'
-      ],
-      location: "Phuket, Thailand",
-      monthYear: "May 2024",
-      siteArea: "20000 m²",
-      contractMember: "DEF Industrial Co."
-    },
-    {
-      title: "Heavy Industry Processing Facility",
-      images: [
-        '/images/project-references/heavy1.jpg',
-        '/images/project-references/heavy2.jpg',
-        '/images/project-references/heavy3.jpg',
-        '/images/project-references/heavy4.jpg'
-      ],
-      location: "Rayong, Thailand",
-      monthYear: "July 2024",
-      siteArea: "15000 m²",
-      contractMember: "GHI Heavy Industries"
-    },
-    {
-      title: "Multi-Purpose Commercial Complex",
-      images: [
-        '/images/project-references/complex1.jpg',
-        '/images/project-references/complex2.jpg',
-        '/images/project-references/complex3.jpg',
-        '/images/project-references/complex4.jpg',
-        '/images/project-references/complex5.jpg'
-      ],
-      location: "Pattaya, Thailand",
-      monthYear: "September 2024",
-      siteArea: "25000 m²",
-      contractMember: "JKL Development Group"
-    }
-  ];
+  useEffect(() => {
+    const fetchProjectReferences = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.projectReferences.getAll();
+        
+        const transformedReferences = response.data.map((project) => ({
+          title: project.project_name,
+          images: project.project_image || [],
+          location: project.location,
+          monthYear: project.date_time,
+          siteArea: project.site_area,
+          contractMember: project.contractor,
+          layoutType: project.layout_type || 1
+        }));
+        
+        setReferences(transformedReferences);
+      } catch (err) {
+        console.error('Error fetching project references:', err);
+        setError('Failed to load project references');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % references.length);
-  };
+    fetchProjectReferences();
+  }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + references.length) % references.length);
-  };
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (references.length <= 1) return;
+      
+      if (event.key === 'ArrowLeft') {
+        setCurrentSlide(currentSlide > 0 ? currentSlide - 1 : references.length - 1);
+      } else if (event.key === 'ArrowRight') {
+        setCurrentSlide(currentSlide < references.length - 1 ? currentSlide + 1 : 0);
+      }
+    };
 
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
-  };
+    window.addEventListener('keydown', handleKeyPress);
+    return () => window.removeEventListener('keydown', handleKeyPress);
+  }, [currentSlide, references.length]);
 
-  const currentReference = references[currentSlide];
+  // Auto-slide functionality (optional - can be enabled)
+  useEffect(() => {
+    if (references.length <= 1) return;
+    
+    const autoSlide = setInterval(() => {
+      setCurrentSlide(current => current < references.length - 1 ? current + 1 : 0);
+    }, 10000); // Change slide every 10 seconds
+
+    return () => clearInterval(autoSlide);
+  }, [references.length]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
+        <Nav />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-white text-xl">Loading project references...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
+        <Nav />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-red-400 text-xl">{error}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (references.length === 0) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
+        <Nav />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-white text-xl">No project references available.</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#000A14" }}>
       <Nav />
 
-      {/* Reference Slideshow */}
-      <section className="bg- py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          {/* Main Card Container */}
-          <div className="relative h-[600px] rounded-lg overflow-hidden shadow-lg">
-            <div className="w-full h-full relative transition-all duration-500">
-              <Reference1 
-                title={currentReference.title}
-                images={currentReference.images}
-                location={currentReference.location}
-                monthYear={currentReference.monthYear}
-                siteArea={currentReference.siteArea}
-                contractMember={currentReference.contractMember}
-              />
-              
-              {/* Navigation Arrows */}
-              <button 
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              
-              <button 
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
-              >
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-          </div>
-          
-          {/* Centered Dots Navigation */}
-          <div className="flex justify-center mt-4">
-            <div className="flex space-x-3">
+      {/* Project Reference Slider - Desktop Fit */}
+      <div className="flex-1 relative flex items-center justify-center">
+        {references.length > 0 && (
+          <Reference1
+            title={references[currentSlide].title}
+            images={references[currentSlide].images}
+            location={references[currentSlide].location}
+            monthYear={references[currentSlide].monthYear}
+            siteArea={references[currentSlide].siteArea}
+            contractMember={references[currentSlide].contractMember}
+            layoutType={references[currentSlide].layoutType}
+            onPrev={() => setCurrentSlide(currentSlide > 0 ? currentSlide - 1 : references.length - 1)}
+            onNext={() => setCurrentSlide(currentSlide < references.length - 1 ? currentSlide + 1 : 0)}
+            length={references.length}
+          />
+        )}
+
+        
+
+        {/* Slide Indicators */}
+        {references.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-20">
+            <div className="flex space-x-2">
               {references.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? 'bg-gray-900' : 'bg-gray-400 hover:bg-gray-600'
+                  className={`w-3 h-3 rounded-full transition-all ${
+                    currentSlide === index 
+                      ? 'bg-white' 
+                      : 'bg-white bg-opacity-50 hover:bg-opacity-75'
                   }`}
                 />
               ))}
             </div>
           </div>
-        </div>
-      </section>
+        )}
+      </div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );

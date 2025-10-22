@@ -6,93 +6,103 @@ const Reference1 = ({
   location = "Chiang Mai, Thailand",
   monthYear = "July 2024",
   siteArea = "15000 msquare",
-  contractMember = "ABC Engineering Co., Ltd."
+  contractMember = "ABC Engineering Co., Ltd.",
+  layoutType = 5, // Add support for layout type
+  onPrev,
+  onNext,
+  length = 1
 }) => {
   
-  // Function to get grid layout based on number of images
-  const getGridLayout = (count) => {
-    switch(count) {
-      case 1:
-        return "grid-cols-1";
-      case 2:
-        return "grid-cols-2";
-      case 3:
-        return "grid-cols-2 grid-rows-2";
-      case 4:
-        return "grid-cols-2 grid-rows-2";
-      case 5:
-        return "grid-cols-3 grid-rows-2";
-      default:
-        return "grid-cols-1";
-    }
-  };
-
-  // Function to get specific positioning for 5 images
-  const getImageClasses = (index, total) => {
-    if (total === 3) {
-      if (index === 0) return "col-start-1 row-start-1 row-span-2"; // Left side, spans 2 rows (biggest)
-      if (index === 1) return "col-start-2 row-start-1"; // Top right
-      if (index === 2) return "col-start-2 row-start-2"; // Bottom right
-      return "";
-    }
-    if (total === 5) {
-      if (index === 0) return "col-start-1 row-start-2 col-span-2 row-span-1"; // Biggest image at left bottom
-      if (index === 1) return "col-start-3 row-start-1"; // Top right
-      if (index === 2) return "col-start-3 row-start-2"; // Middle right
-      if (index === 3) return "col-start-1 row-start-1"; // Top left
-      if (index === 4) return "col-start-2 row-start-1"; // Top middle
-      return "";
-    }
-    return "";
+  // Function to get flex layout based on layout type
+  const getFlexLayout = (layoutType) => {
+    return "justify-center items-center";
   };
 
   const imageCount = Math.min(images.length, 5); // Max 5 images
   const displayImages = images.slice(0, 5);
 
   return (
-    <div className="w-full h-full relative" style={{ backgroundColor: "#FFFFFF" }}>
+    <div className="relative flex items-center justify-center" style={{ width: '2000px', height: '800px' }}>
       
-      {/* Title at top center */}
-      <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
-        <h1 className="text-black text-3xl font-bold text-center">
-          {title}
-        </h1>
-      </div>
-      
-      {/* Images Grid - Full Screen */}
-      <div className={`absolute inset-0 top-20 bottom-0 grid gap-4 p-4 ${getGridLayout(imageCount)}`}>
-        {displayImages.map((image, index) => (
-          <div 
-            key={index}
-            className={`bg-cover bg-center rounded-lg ${getImageClasses(index, imageCount)}`}
-            style={{ backgroundImage: `url(${image})` }}
-          >
-            <div className="w-full h-full bg-black bg-opacity-20 rounded-lg"></div>
-          </div>
-        ))}
-      </div>
-      
-      {/* Project details overlay - bottom left */}
-      <div className="absolute bottom-8 left-8 z-10 p-6 rounded-lg max-w-md border border-gray-300" style={{ backgroundColor: "#151F29" }}>
-        <div className="text-white space-y-2">
-          <div>
-            <span className="text-gray-300">Location : </span>
-            <span>{location}</span>
-          </div>
-          <div>
-            <span className="text-gray-300">Month/Year : </span>
-            <span>{monthYear}</span>
-          </div>
-          <div>
-            <span className="text-gray-300">Site Area : </span>
-            <span>{siteArea}</span>
-          </div>
-          <div>
-            <span className="text-gray-300">Contract Member : </span>
-            <span>{contractMember}</span>
+      {/* Previous Button - Much further outside left */}
+      {length > 1 && (
+        <button
+          onClick={onPrev}
+          className="absolute left-32 top-2/5 transform -translate-y-1/2 z-20 bg-white bg-opacity-60 text-black p-3 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+      )}
+
+      {/* Main Content Container */}
+      <div className="relative" style={{ width: '1200px', height: '750px', backgroundColor: "#000A14" }}>
+        
+        {/* Title at top center - outside image area */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 z-10" style={{ width: '1000px' }}>
+          <h1 className="text-white text-5xl font-bold text-center m-0" style={{ fontFamily: 'Oswald, sans-serif' }}>
+            {title}
+          </h1>
+        </div>
+        
+        {/* Images Grid - Adjusted to start below title */}
+        <div className={`absolute flex gap-3 ${getFlexLayout(layoutType)} inset-x-8 top-20`}>
+          {displayImages.map((image, index) => (
+            <div 
+              key={index}
+              className={`bg-cover bg-center ${layoutType === 1 ? '' : 'border-5 border-white'} ${layoutType === 1 ? '' : layoutType === 4 ? 'w-1/3' : layoutType === 5 ? 'w-1/5' : 'flex-1'} ${layoutType === 1 ? '' : 'aspect-square'}`}
+              style={{ backgroundImage: `url(${image})`, height: '500px', ...(layoutType === 1 ? { width: '100%' } : {}) }}
+              onError={(e) => {
+                console.log(`Failed to load image: ${image}`);
+                e.target.style.backgroundImage = 'none';
+                e.target.style.backgroundColor = '#f3f4f6';
+                e.target.innerHTML = '<div class="flex items-center justify-center h-full text-gray-500">Image not found</div>';
+              }}
+            >
+              {layoutType !== 1 && <div className="w-full h-full bg-black bg-opacity-20"></div>}
+            </div>
+          ))}
+        </div>
+
+        {/* Project details overlay */}
+        <div className="absolute z-10 p-4 bg-gray-800 bg-opacity-80 mx-auto" style={{ bottom: '12px', left: '50%', transform: 'translateX(-50%)', maxWidth: '600px' }}>
+          <div className="text-white flex justify-center items-center">
+            {/* Combined centered information */}
+            <div className="text-left">
+              <div className="grid grid-cols-[120px_1fr] text-lg">
+                <span className="text-gray-300">Location </span>
+                <span>: {location}</span>
+                
+                <span className="text-gray-300">Site Area </span>
+                <span>: {siteArea}</span>
+                
+                <span className="text-gray-300">Month/Year </span>
+                <span>: {monthYear}</span>
+                
+                {contractMember && (
+                  <>
+                    <span className="text-gray-300">Contractor </span>
+                    <span>: {contractMember}</span>
+                  </>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Next Button - Much further outside right */}
+      {length > 1 && (
+        <button
+          onClick={onNext}
+          className="absolute right-32 top-2/5 transform -translate-y-1/2 z-20 bg-white bg-opacity-60 text-black p-3 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 };

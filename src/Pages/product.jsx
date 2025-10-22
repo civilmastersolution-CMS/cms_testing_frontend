@@ -1,96 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Nav from '../Component/nav';
 import ProductCard from '../Component/product_card';
 import Footer from '../Component/footer';
+import { apiService } from '../services/api';
 
 const Product = () => {
-  const productData = [
-    {
-      title: "Steel Fiber",
-      description: "Steel fiber, made from high-strength steel (100-2000 MPa), is designed with hooked ends and optimized geometry for effective use in concrete.",
-      successPoints: [
-        "Proven worldwide use.",
-        "Trusted in major construction projects."
-      ],
-      benefits: [
-        "Extends concrete lifespan.",
-        "Reduces reinforcement costs."
-      ],
-      performance: [
-        "High tensile strength.",
-        "Strong load and impact resistance."
-      ],
-      imagePosition: "left",
-      theme: "dark"
-    },
-    {
-      title: "Synthetic Fiber",
-      description: "Synthetic fiber reinforcement uses high-performance polypropylene fibers to strengthen concrete and shotcrete, reinforcing the entire structure.",
-      successPoints: [
-        "Proven in modern construction.",
-        "Enhances structural integrity."
-      ],
-      benefits: [
-        "Reinforces all areas of concrete.",
-        "Increases durability and longevity."
-      ],
-      performance: [
-        "High tensile strength.",
-        "Uniform distribution in mix.",
-        "Suitable for concrete and shotcrete."
-      ],
-      imagePosition: "right",
-      theme: "light"
-    },
-    {
-      title: "Micro Steel Fiber",
-      description: "Micro steel fiber, produced from extra-high strength steel (2800-2800 MPa), has a smaller size and is ideal for Ultra-High Performance Fiber Reinforced Concrete (UHPFRC).",
-      successPoints: [
-        "Widely applied in UHPFRC projects.",
-        "Recognized for advanced construction solutions."
-      ],
-      benefits: [
-        "Enables higher fiber dosage (up to 150 kg/m³).",
-        "Increases toughness and durability of concrete."
-      ],
-      performance: [
-        "Provides extra-high tensile strength.",
-        "Optimized for superior structural performance."
-      ],
-      imagePosition: "left",
-      theme: "dark"
-    },
-    {
-      title: "Armor Joint",
-      description: "Armor Joint is a heavy-duty prefabricated joint system for large concrete floors, with cold-drawn steel rails for strong edge protection.",
-      successPoints: [
-        "Standard in industrial flooring.",
-        "Proven in large-scale projects."
-      ],
-      benefits: [
-        "Protects slab edges.",
-        "Extends floor durability."
-      ],
-      performance: [
-        "High-strength steel rails.",
-        "Reliable in heavy-traffic areas."
-      ],
-      imagePosition: "right",
-      theme: "light"
-    }
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await apiService.products.getAll();
+        
+        // Transform API data to match the expected format
+        const transformedProducts = response.data.map((product, index) => ({
+          title: product.product_name,
+          description: product.product_description,
+          successPoints: product.success || [],
+          benefits: product.benefit || [],
+          performance: product.performance || [],
+          images: product.product_image || [],
+          imagePosition: index % 2 === 0 ? "left" : "right", // Alternate positioning
+          theme: index % 2 === 0 ? "dark" : "light" // Alternate themes
+        }));
+        
+        setProducts(transformedProducts);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
+        <Nav />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-white text-xl">Loading products...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
+        <Nav />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-red-400 text-xl">{error}</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-900">
+    <div className="min-h-screen" style={{ backgroundColor: "#000A14" }}>
       <Nav />
       
       {/* Hero Section */}
-      <section className="bg-gray-900 text-white py-16">
+      <section className="text-white py-16" style={{ backgroundColor: "#000A14" }}>
         <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="text-2xl mb-8">
+          <h1 className="text-5xl font-bold mb-8">
             At <span className="text-cyan-400">Civil Master Solution</span>(CMS)
           </h1>
-          <p className="text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-gray-300 text-xl max-w-6xl mx-auto leading-relaxed">
             We go beyond simply selling flooring materials, we enhance complete solutions. As structural design engineers, our
             focus is to understand your projects requirements and select the right products for the right application, ensuring
             performance, safety, and long-term value. Our products meet international quality standards and have been
@@ -100,20 +81,28 @@ const Product = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-8 space-y-16">
-          {productData.map((product, index) => (
-            <ProductCard
-              key={index}
-              title={product.title}
-              description={product.description}
-              successPoints={product.successPoints}
-              benefits={product.benefits}
-              performance={product.performance}
-              imagePosition={product.imagePosition}
-              theme={product.theme}
-            />
-          ))}
+      <section style={{ backgroundColor: "#000A14" }}>
+        <div className="w-full">
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <ProductCard
+                key={index}
+                title={product.title}
+                description={product.description}
+                successPoints={product.successPoints}
+                benefits={product.benefits}
+                performance={product.performance}
+                images={product.images}
+                imagePosition={product.imagePosition}
+                theme={product.theme}
+                layout={index % 2 === 0 ? 1 : 2} // Alternate layouts
+              />
+            ))
+          ) : (
+            <div className="text-center text-gray-600">
+              No products available at the moment.
+            </div>
+          )}
         </div>
       </section>
 

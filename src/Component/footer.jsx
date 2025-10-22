@@ -38,22 +38,21 @@ const Footer = () => {
           {/* Map Section */}
           <div className="flex flex-col items-center">
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3873.6542234567!2d100.6789012345678!3d13.8765432109876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDUyJzM1LjYiTiAxMDDCsDQwJzQ0LjEiRQ!5e0!3m2!1sen!2sth!4v1234567890123!5m2!1sen!2sth"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1673.8233023029538!2d100.65696920836548!3d13.836604916041068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x311d630004df833d%3A0xe75def4099e06d01!2sCivil%20Master%20Solution%20Co.Ltd.%20(CMS)!5e0!3m2!1sen!2sth!4v1760509895833!5m2!1sen!2sth"
               width="100%" 
               height="250" 
-              style={{ border: 0, borderRadius: '6px' }}
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
               title="CMS Location"
-              className="mb-4 w-full max-w-xs rounded"
+              className="mb-4 w-full max-w-xs "
             ></iframe>
           </div>
           
           {/* Contact */}
           <div className="w-96">
             <h4 className="text-black font-semibold mb-4">Contact</h4>
-            <div className="text-black text-sm space-y-2">
+            <div className="text-black text-sm space-y-4">
               <p>16 Soi Nawamin 163, Intersection 6, Ram Inthra Subdistrict,
                  Khan Na Yao District, Bangkok 10230</p>
               <p>081-710-3444 / 062-479-1615</p>
@@ -66,7 +65,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-gray-200 mt-8 pt-4 text-center">
           <p className="text-black text-sm">
-            Civil Master Solution ©2024
+            Civil Master Solution ©2025
           </p>
         </div>
       </div>
