@@ -14,11 +14,18 @@ const Article = () => {
   const [error, setError] = useState(null);
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
 
-  // Helper function to extract plain text from Slate JSON content
-  const getPlainTextPreview = (content) => {
+  // Helper function to extract plain text from Slate JSON content or HTML
+  const getPlainTextPreview = (content, contentHtml) => {
+    // If HTML content exists, strip tags for preview
+    if (contentHtml) {
+      const tmp = document.createElement('div');
+      tmp.innerHTML = contentHtml;
+      const text = tmp.textContent || tmp.innerText || '';
+      return text.slice(0, 100) + (text.length > 100 ? '...' : '');
+    }
+    
+    // Fallback to Slate JSON parsing
     if (typeof content === 'string') {
       return content.slice(0, 100) + (content.length > 100 ? '...' : '');
     }
@@ -64,14 +71,6 @@ const Article = () => {
     fetchArticles();
   }, [searchParams]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [articlesData]);
-
-  const totalPages = Math.ceil(articlesData.length / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const displayedArticles = articlesData.slice(startIndex, startIndex + itemsPerPage);
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-900">
@@ -97,109 +96,159 @@ const Article = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#000A14]">
+    <div className="min-h-screen bg-[#000A14]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
       <Nav />
       {/* Content Section */}
       <section className="py-8 bg-[#000A14]">
         <div className="max-w-7xl mx-auto px-8">
-          {/* Hero section (image + overlay + heading) */}
-
-
           {/* Small left accent + heading to match image */}
           <div className="flex items-center mb-6">
             <div className="w-10 h-px bg-cyan-400 mr-4" />
             <h3 className="text-xl text-white font-semibold tracking-wider">Articles</h3>
           </div>
 
-          {/* Use selectedArticle if present */}
-          {selectedArticle ? (
-            (() => {
-              const article = selectedArticle;
-              const content = article.content || '';
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Selected Article - Left Side */}
+            <div className="lg:col-span-2">
+              {selectedArticle ? (
+                (() => {
+                  const article = selectedArticle;
+                  const content = article.content || '';
 
-              return (
-                <div>
-                  {/* Article image if available */}
-                  {article.article_image && article.article_image.length > 0 && (
-                    <div className="w-full h-64 md:h-72 bg-gray-700 mb-6 overflow-hidden rounded">
-                      <img
-                        src={article.article_image[0]}
-                        alt={article.article_title}
-                        className="w-full h-full object-cover"
-                        onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
-                      />
-                      <div className="w-full h-full flex items-center justify-center" style={{ display: 'none' }}>
-                        <span className="text-gray-400">Image not available</span>
+                  return (
+                    <div>
+                      {/* Centered title */}
+                      <h1 className="text-4xl md:text-5xl font-bold text-white text-left mb-6">{article.article_title}</h1>
+                      <p className="text-sm text-gray-400 text-left mb-2">Category: {article.category}</p>
+                      {article.keyword && article.keyword.length > 0 && (
+                        <p className="text-sm text-gray-400 text-left mb-6">
+                          Keywords: {Array.isArray(article.keyword) ? article.keyword.join(', ') : article.keyword}
+                        </p>
+                      )}
+
+                      {/* Full content display */}
+                      <div className="text-white">
+                        <style>
+                          {`
+                            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+                            .article-content img {
+                              height: auto;
+                              display: block;
+                              margin: 1rem auto;
+                              border: 1px solid #374151;
+                            }
+                            .article-content table {
+                              border-collapse: collapse;
+                              width: 100%;
+                              margin: 1rem 0;
+                              background-color: #1f2937;
+                            }
+                            .article-content th, .article-content td {
+                              border: 1px solid #4b5563;
+                              padding: 0.5rem;
+                              text-align: left;
+                              color: white;
+                            }
+                            .article-content th {
+                              background-color: #374151;
+                              font-weight: bold;
+                            }
+                            .article-content p {
+                              text-align: justify;
+                              margin-bottom: 1rem;
+                            }
+                            .article-content * {
+                              color: white !important;
+                              font-family: 'Montserrat', sans-serif !important;
+                            }
+                            .article-content a {
+                              color: #22d3ee !important;
+                            }
+                            .article-content a:hover {
+                              color: #67e8f9 !important;
+                            }
+                          `}
+                        </style>
+                        {article.content_html ? (
+                          <>
+                            {(() => {
+                              // Process HTML to fix relative image URLs
+                              const processedHtml = article.content_html.replace(
+                                /<img[^>]+src=([^ >]+)[^>]*>/gi,
+                                (match, src) => {
+                                  src = src.replace(/^["']|["']$/g, ''); // Remove quotes
+                                  if (src.startsWith('http://') || src.startsWith('https://') || src.startsWith('data:')) {
+                                    return match; // Already absolute or data URL
+                                  }
+                                  // Assume relative URLs are relative to media directory
+                                  const fullSrc = `http://localhost:8000/media/${src.replace(/^\/+/, '')}`;
+                                  return match.replace(src, fullSrc);
+                                }
+                              );
+                              return (
+                                <>
+                                  {console.log('Rendering processed HTML content:', processedHtml.substring(0, 200))}
+                                  <div 
+                                    dangerouslySetInnerHTML={{ __html: processedHtml }} 
+                                    className="prose prose-invert max-w-none article-content"
+                                  />
+                                </>
+                              );
+                            })()}
+                          </>
+                        ) : (
+                          <ContentRenderer content={article.content} />
+                        )}
+                      </div>
+
+                      {/* Back to all articles button */}
+                      <div className="flex justify-end mt-8">
+                        <button
+                          onClick={() => navigate('/news-article')}
+                          className="hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-200"
+                        >
+                          <span className="text-4xl mr-1">←</span> Back to All Articles
+                        </button>
                       </div>
                     </div>
-                  )}
-
-                  {/* Centered title */}
-                  <h1 className="text-6xl md:text-6xl font-bold text-white text-center mb-6">{article.article_title}</h1>
-                  <p className="text-sm text-gray-400 text-left mb-3">Category: {article.category}</p>
-
-                  {/* Full content display */}
-                  <div className="text-white">
-                    <ContentRenderer content={article.content} />
-                  </div>
-
-                  {/* Back to all articles button */}
-                  <div className="flex justify-end mt-8">
-                    <button
-                      onClick={() => navigate('/news-article')}
-                      className="hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-200"
-                    >
-                      <span className="text-4xl mr-1">←</span> Back to All Articles
-                    </button>
-                  </div>
+                  );
+                })()
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-gray-400 text-lg">Select an article to read</div>
                 </div>
-              );
-            })()
-          ) : null}
-        </div>
-      </section>
-
-      {/* Articles List Section */}
-      <section className="py-8 bg-[#000A14]">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="flex items-center mb-6">
-            <div className="w-10 h-px bg-cyan-400 mr-4" />
-            <h3 className="text-xl text-white font-semibold tracking-wider">All Articles</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {displayedArticles.map((article, index) => (
-              <ArticleRow
-                key={article.id || index}
-                title={article.article_title}
-                description={getPlainTextPreview(article.content)}
-                category={article.category}
-                date={new Date(article.created_at).toLocaleDateString('en-US', {
-                  month: 'short',
-                  day: 'numeric'
-                })}
-                onClick={() => navigate(`?id=${article.id}`)}
-              />
-            ))}
-          </div>
-          {totalPages > 1 && (
-            <div className="flex justify-center items-center mt-8 space-x-4">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg font-semibold"
-              >
-                ← Previous
-              </button>
-              <span className="text-white text-lg">Page {currentPage} of {totalPages}</span>
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg font-semibold"
-              >
-                Next →
-              </button>
+              )}
             </div>
-          )}
+
+            {/* Articles List - Right Side */}
+            <div className="lg:col-span-1">
+              <div className="flex items-center mb-6">
+                <div className="w-10 h-px bg-cyan-400 mr-4" />
+                <h4 className="text-lg text-white font-semibold tracking-wider">All Articles</h4>
+              </div>
+              <div className="space-y-2">
+                {articlesData.map((article, index) => (
+                  <div
+                    key={article.id || index}
+                    onClick={() => navigate(`?id=${article.id}`)}
+                    className={`py-3 px-4 cursor-pointer transition-colors border-b border-gray-700 last:border-b-0 ${
+                      selectedArticle && selectedArticle.id === article.id
+                        ? 'bg-cyan-900 border-cyan-400'
+                        : 'hover:bg-gray-700'
+                    }`}
+                  >
+                    <h5 className="text-white font-medium text-sm leading-tight">{article.article_title}</h5>
+                    <div className="flex items-center justify-between mt-1">
+                      <p className="text-gray-400 text-xs">{article.category || 'Uncategorized'}</p>
+                      <button className="text-cyan-400 hover:text-cyan-300 text-xs font-medium transition-colors">
+                        Read More →
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

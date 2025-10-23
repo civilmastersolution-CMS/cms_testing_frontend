@@ -114,7 +114,7 @@ const New = () => {
 
                   {/* Centered title */}
                   <h1 className="text-6xl md:text-6xl font-bold text-white text-center mb-6">{article.news_title}</h1>
-                  <p className="text-sm text-gray-400 text-left mb-3">Keywords: {article.keyword}</p>
+                  <p className="text-sm text-gray-400 text-left mb-3">Keywords: {Array.isArray(article.keyword) ? article.keyword.join(', ') : article.keyword}</p>
 
                   {/* Content */}
                   <div className="text-white">

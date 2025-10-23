@@ -65,7 +65,7 @@ const ContentRenderer = ({ content }) => {
         inline: true,
         allowBase64: true,
         HTMLAttributes: {
-          class: 'w-full h-[350px] rounded-lg object-cover',
+          class: 'w-full h-[350px] object-cover',
         },
       }),
       TextStyle,
@@ -175,7 +175,7 @@ const NodeRenderer = ({ node }) => {
           <img
             src={node.url}
             alt="Embedded image"
-            className="max-w-full h-auto rounded-lg shadow-sm border border-gray-200"
+            className="max-w-full h-auto shadow-sm border border-gray-200"
             style={{ maxHeight: '400px', maxWidth: '100%' }}
             onError={(e) => {
               e.target.style.display = 'none';
