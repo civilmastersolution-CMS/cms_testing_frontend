@@ -170,9 +170,9 @@ const HeroProjectReference = () => {
         </div>
 
         {/* Main Card Container */}
-        <div className="relative h-[600px] 2xl:h-[600px] xl:h-[600px] md:h-[500px] sm:h-[200px] flex items-center justify-center overflow-hidden shadow-lg">
+        <div className="relative h-[200px] sm:h-[200px] md:h-[500px] xl:h-[600px] 2xl:h-[600px] flex items-center justify-center overflow-hidden shadow-lg">
           <div
-            className="w-full h-full lg:w-full lg:h-full md:w-[80%] md:h-[80%] bg-cover 2xl:bg-contain bg-no-repeat bg-center relative transition-all duration-500"
+            className="w-full h-full md:w-[80%] md:h-[80%] lg:w-full lg:h-full bg-cover 2xl:bg-contain bg-no-repeat bg-center relative transition-all duration-500"
             style={{ backgroundImage: `url('${currentProject.image}')` }}
           >
             {/* Navigation Arrows */}
@@ -215,26 +215,26 @@ const HeroProjectReference = () => {
             </button>
 
             {/* Content Overlay */}
-            <div className="absolute bottom-4 left-6 right-6 z-10">
+            <div className="absolute bottom-0.5 sm:bottom-1 left-2 sm:left-3 right-2 sm:right-3 z-10">
               <div className="max-w-4xl">
-                <h3 className="text-2xl 3xl:text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-xs font-bold text-white bg-gray-900 inline-block px-6 sm:px-3 py-3 sm:py-2 mb-3 sm:mb-2 transition-all duration-500 mr-5">
+                <h3 className="text-sm 3xl:text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-[10px] font-bold text-white bg-gray-900 inline-block px-3 sm:px-2 py-1 sm:py-1 mb-1 sm:mb-1 transition-all duration-500 mr-2">
                   {currentProject.title}
                 </h3>
                 {currentProject.location && (
-                  <p className="text-[10px] 3xl:text-2xl 2xl:text-xl xl:text-lg lg:text-base sm:text-xs text-white bg-black bg-opacity-50 inline-block px-2 sm:px-4 py-1 sm:py-2">
+                  <p className="text-[8px] 3xl:text-2xl 2xl:text-xl xl:text-lg lg:text-base sm:text-[8px] text-white bg-black bg-opacity-50 inline-block px-1 sm:px-2 py-0.5 sm:py-1">
                     <FontAwesomeIcon
                       icon={faLocationDot}
-                      className="sm:w-[12px] sm:h-[10px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[20px] h-[16px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.location} |
                     <FontAwesomeIcon
                       icon={faCalendar}
-                      className="sm:w-[12px] sm:h-[10px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[20px] h-[16px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.date_time} |
                     <FontAwesomeIcon
                       icon={faChartArea}
-                      className="sm:w-[12px] sm:h-[10px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[20px] h-[16px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.site_area}
                   </p>

@@ -77,10 +77,10 @@ const Product = () => {
         style={{ backgroundColor: "#000A14" }}
       >
         <div className="max-w-7xl mx-auto px-8 text-center">
-          <h1 className="sm:text-4xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-bold mb-8 3xl:text-7xl">
+          <h1 className="text-4xl sm:text-6xl md:text-5xl lg:text-5xl xl:text-5xl 2xl:text-6xl font-bold mb-8 3xl:text-8xl">
             <span className="text-cyan-400">Civil Master Solution</span>(CMS)
           </h1>
-          <p className="md:text-gray-300 sm:text-md md:text-lg lg-text-xl md:max-w-6xl md:mx-auto md:leading-relaxed text-md sm:text-justify lg:text-center 2xl:text-2xl 3xl:text-2xl">
+          <p className="md:text-gray-300 text-lg sm:text-xl md:text-lg lg-text-xl md:max-w-6xl md:mx-auto md:leading-relaxed text-md sm:text-justify lg:text-center 2xl:text-3xl 3xl:text-4xl">
             We go beyond simply selling flooring materials, we enhance complete
             solutions. As structural design engineers, our focus is to
             understand your projects requirements and select the right products

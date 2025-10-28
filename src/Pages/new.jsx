@@ -87,7 +87,7 @@ const New = () => {
           {/* Small left accent + heading to match image */}
           <div className="flex items-center mb-6">
             <div className="w-10 h-px bg-cyan-400 mr-4" />
-            <h1 className="text-5xl text-white font-semibold tracking-wider">News</h1>
+            <h1 className="text-5xl sm:text-2xl text-white font-semibold tracking-wider">News</h1>
           </div>
 
           {/* Use selectedNews if present or first item as focusArticle */}
@@ -113,8 +113,8 @@ const New = () => {
                   )}
 
                   {/* Centered title */}
-                  <h1 className="text-6xl md:text-6xl font-bold text-white text-center mb-6">{article.news_title}</h1>
-                  <p className="text-sm text-gray-400 text-left mb-3">Keywords: {Array.isArray(article.keyword) ? article.keyword.join(', ') : article.keyword}</p>
+                  <h1 className="text-6xl md:text-6xl sm:text-3xl font-bold text-white text-center mb-6">{article.news_title}</h1>
+                  <p className="text-sm sm:text-xs text-gray-400 text-left mb-3">Keywords: {Array.isArray(article.keyword) ? article.keyword.join(', ') : article.keyword}</p>
 
                   {/* Content */}
                   <div className="text-white">
@@ -125,7 +125,7 @@ const New = () => {
                   <div className="flex justify-end mt-8">
                     <button
                       onClick={() => navigate('/news-article')}
-                      className=" hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-200"
+                      className=" hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm sm:text-xs transition-colors duration-200"
                     >
                       <span className="text-4xl mr-1">←</span> Back to News & Articles
                     </button>
@@ -135,7 +135,7 @@ const New = () => {
             })()
           ) : (
             <div className="text-center py-12">
-              <div className="text-gray-400 text-lg">No news available</div>
+              <div className="text-gray-400 text-lg sm:text-xs">No news available</div>
             </div>
           )}
         </div>
@@ -146,7 +146,7 @@ const New = () => {
         <div className="max-w-7xl mx-auto px-8">
           <div className="flex items-center mb-6">
             <div className="w-10 h-px bg-cyan-400 mr-4" />
-            <h3 className="text-xl text-white font-semibold tracking-wider">All News</h3>
+            <h3 className="text-xl sm:text-lg text-white font-semibold tracking-wider">All News</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {displayedNews.map((news, index) => (
@@ -166,15 +166,15 @@ const New = () => {
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg font-semibold"
+                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg sm:text-sm font-semibold"
               >
                 ← Previous
               </button>
-              <span className="text-white text-lg">Page {currentPage} of {totalPages}</span>
+              <span className="text-white text-lg sm:text-xs">Page {currentPage} of {totalPages}</span>
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg font-semibold"
+                className="text-cyan-400 hover:text-cyan-300 disabled:text-gray-500 text-lg sm:text-sm font-semibold"
               >
                 Next →
               </button>

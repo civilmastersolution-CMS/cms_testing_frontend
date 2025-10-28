@@ -20,9 +20,80 @@ const ContentRenderer = ({ content }) => {
     } catch (e) {
       // If it's not valid JSON, treat as plain text
       return (
-        <div className="prose prose-2xl max-w-none text-white">
+        <div className="article-content prose max-w-none text-white">
+          <style>
+            {`
+              .article-content p {
+                font-size: 18px;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+                text-align: justify;
+              }
+              .article-content h1 {
+                font-size: 24px;
+                font-weight: bold;
+                margin-bottom: 1rem;
+                margin-top: 1.5rem;
+                text-align: justify;
+              }
+              .article-content h2 {
+                font-size: 22px;
+                font-weight: bold;
+                margin-bottom: 0.75rem;
+                margin-top: 1.25rem;
+                text-align: justify;
+              }
+              .article-content h3 {
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 0.75rem;
+                margin-top: 1rem;
+                text-align: justify;
+              }
+              .article-content img {
+                max-width: 100%;
+                height: auto;
+              }
+              @media (min-width: 390px) {
+                .article-content p { font-size: 20px; }
+                .article-content h1 { font-size: 26px; }
+                .article-content h2 { font-size: 24px; }
+                .article-content h3 { font-size: 22px; }
+              }
+              @media (min-width: 768px) {
+                .article-content p { font-size: 22px; }
+                .article-content h1 { font-size: 28px; }
+                .article-content h2 { font-size: 26px; }
+                .article-content h3 { font-size: 24px; }
+              }
+              @media (min-width: 1024px) {
+                .article-content p { font-size: 24px; }
+                .article-content h1 { font-size: 30px; }
+                .article-content h2 { font-size: 28px; }
+                .article-content h3 { font-size: 26px; }
+              }
+              @media (min-width: 1280px) {
+                .article-content p { font-size: 26px; }
+                .article-content h1 { font-size: 32px; }
+                .article-content h2 { font-size: 30px; }
+                .article-content h3 { font-size: 28px; }
+              }
+              @media (min-width: 1536px) {
+                .article-content p { font-size: 28px; }
+                .article-content h1 { font-size: 34px; }
+                .article-content h2 { font-size: 32px; }
+                .article-content h3 { font-size: 30px; }
+              }
+              @media (min-width: 1920px) {
+                .article-content p { font-size: 30px; }
+                .article-content h1 { font-size: 36px; }
+                .article-content h2 { font-size: 34px; }
+                .article-content h3 { font-size: 32px; }
+              }
+            `}
+          </style>
           {content.split('\n\n').map((paragraph, index) => (
-            <p key={index} className="mb-4 leading-relaxed text-justify text-2xl">
+            <p key={index} className="mb-4 leading-relaxed text-justify">
               {paragraph}
             </p>
           ))}
@@ -34,9 +105,80 @@ const ContentRenderer = ({ content }) => {
   // If content is a string after parsing attempt, render as plain text
   if (typeof parsedContent === 'string') {
     return (
-      <div className="prose prose-2xl max-w-none text-white">
+      <div className="article-content prose max-w-none text-white">
+        <style>
+          {`
+            .article-content p {
+              font-size: 18px;
+              line-height: 1.6;
+              margin-bottom: 1rem;
+              text-align: justify;
+            }
+            .article-content h1 {
+              font-size: 24px;
+              font-weight: bold;
+              margin-bottom: 1rem;
+              margin-top: 1.5rem;
+              text-align: justify;
+            }
+            .article-content h2 {
+              font-size: 22px;
+              font-weight: bold;
+              margin-bottom: 0.75rem;
+              margin-top: 1.25rem;
+              text-align: justify;
+            }
+            .article-content h3 {
+              font-size: 20px;
+              font-weight: bold;
+              margin-bottom: 0.75rem;
+              margin-top: 1rem;
+              text-align: justify;
+            }
+            .article-content img {
+              max-width: 100%;
+              height: auto;
+            }
+            @media (min-width: 390px) {
+              .article-content p { font-size: 20px; }
+              .article-content h1 { font-size: 26px; }
+              .article-content h2 { font-size: 24px; }
+              .article-content h3 { font-size: 22px; }
+            }
+            @media (min-width: 768px) {
+              .article-content p { font-size: 22px; }
+              .article-content h1 { font-size: 28px; }
+              .article-content h2 { font-size: 26px; }
+              .article-content h3 { font-size: 24px; }
+            }
+            @media (min-width: 1024px) {
+              .article-content p { font-size: 24px; }
+              .article-content h1 { font-size: 30px; }
+              .article-content h2 { font-size: 28px; }
+              .article-content h3 { font-size: 26px; }
+            }
+            @media (min-width: 1280px) {
+              .article-content p { font-size: 26px; }
+              .article-content h1 { font-size: 32px; }
+              .article-content h2 { font-size: 30px; }
+              .article-content h3 { font-size: 28px; }
+            }
+            @media (min-width: 1536px) {
+              .article-content p { font-size: 28px; }
+              .article-content h1 { font-size: 34px; }
+              .article-content h2 { font-size: 32px; }
+              .article-content h3 { font-size: 30px; }
+            }
+            @media (min-width: 1920px) {
+              .article-content p { font-size: 30px; }
+              .article-content h1 { font-size: 36px; }
+              .article-content h2 { font-size: 34px; }
+              .article-content h3 { font-size: 32px; }
+            }
+          `}
+        </style>
         {parsedContent.split('\n\n').map((paragraph, index) => (
-          <p key={index} className="mb-4 leading-relaxed text-justify text-2xl">
+          <p key={index} className="mb-4 leading-relaxed text-justify">
             {paragraph}
           </p>
         ))}
@@ -76,7 +218,7 @@ const ContentRenderer = ({ content }) => {
     ]);
     return (
       <div
-        className="prose prose-2xl max-w-none text-white"
+        className="article-content prose max-w-none text-white"
         dangerouslySetInnerHTML={{ __html: html }}
       />
     );
@@ -85,7 +227,78 @@ const ContentRenderer = ({ content }) => {
   // If content is Slate JSON, render it
   if (Array.isArray(parsedContent)) {
     return (
-      <div className="prose prose-2xl max-w-none text-white">
+      <div className="article-content prose max-w-none text-white">
+        <style>
+          {`
+            .article-content p {
+              font-size: 18px;
+              line-height: 1.6;
+              margin-bottom: 1rem;
+              text-align: justify;
+            }
+            .article-content h1 {
+              font-size: 24px;
+              font-weight: bold;
+              margin-bottom: 1rem;
+              margin-top: 1.5rem;
+              text-align: justify;
+            }
+            .article-content h2 {
+              font-size: 22px;
+              font-weight: bold;
+              margin-bottom: 0.75rem;
+              margin-top: 1.25rem;
+              text-align: justify;
+            }
+            .article-content h3 {
+              font-size: 20px;
+              font-weight: bold;
+              margin-bottom: 0.75rem;
+              margin-top: 1rem;
+              text-align: justify;
+            }
+            .article-content img {
+              max-width: 100%;
+              height: auto;
+            }
+            @media (min-width: 390px) {
+              .article-content p { font-size: 20px; }
+              .article-content h1 { font-size: 26px; }
+              .article-content h2 { font-size: 24px; }
+              .article-content h3 { font-size: 22px; }
+            }
+            @media (min-width: 768px) {
+              .article-content p { font-size: 22px; }
+              .article-content h1 { font-size: 28px; }
+              .article-content h2 { font-size: 26px; }
+              .article-content h3 { font-size: 24px; }
+            }
+            @media (min-width: 1024px) {
+              .article-content p { font-size: 24px; }
+              .article-content h1 { font-size: 30px; }
+              .article-content h2 { font-size: 28px; }
+              .article-content h3 { font-size: 26px; }
+            }
+            @media (min-width: 1280px) {
+              .article-content p { font-size: 26px; }
+              .article-content h1 { font-size: 32px; }
+              .article-content h2 { font-size: 30px; }
+              .article-content h3 { font-size: 28px; }
+            }
+            @media (min-width: 1536px) {
+              .article-content p { font-size: 28px; }
+              .article-content h1 { font-size: 34px; }
+              .article-content h2 { font-size: 32px; }
+              .article-content h3 { font-size: 30px; }
+            }
+            @media (min-width: 1920px) {
+              .article-content p { font-size: 30px; }
+              .article-content h1 { font-size: 36px; }
+              .article-content h2 { font-size: 34px; }
+              .article-content h3 { font-size: 32px; }
+            }
+          `}
+        </style>
         {parsedContent.map((node, index) => (
           <NodeRenderer key={index} node={node} />
         ))}
@@ -100,7 +313,7 @@ const ContentRenderer = ({ content }) => {
 const NodeRenderer = ({ node }) => {
   if (node.type === 'paragraph') {
     return (
-      <p className="mb-4 leading-relaxed text-justify text-xl">
+      <p className="mb-4 leading-relaxed text-justify">
         {node.children?.map((child, index) => (
           <LeafRenderer key={index} leaf={child} />
         ))}
@@ -110,7 +323,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'heading-one') {
     return (
-      <h1 className="text-5xl font-bold mb-4 mt-6 text-justify">
+      <h1 className="font-bold mb-4 mt-6 text-justify">
         {node.children?.map((child, index) => (
           <LeafRenderer key={index} leaf={child} />
         ))}
@@ -120,7 +333,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'heading-two') {
     return (
-      <h2 className="text-4xl font-bold mb-3 mt-5 text-justify">
+      <h2 className="font-bold mb-3 mt-5 text-justify">
         {node.children?.map((child, index) => (
           <LeafRenderer key={index} leaf={child} />
         ))}
@@ -130,7 +343,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'heading-three') {
     return (
-      <h3 className="text-3xl font-bold mb-3 mt-4 text-justify">
+      <h3 className="font-bold mb-3 mt-4 text-justify">
         {node.children?.map((child, index) => (
           <LeafRenderer key={index} leaf={child} />
         ))}
@@ -140,7 +353,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'bulleted-list') {
     return (
-      <ul className="list-disc list-inside mb-4 ml-4 text-justify text-xl">
+      <ul className="list-disc list-inside mb-4 ml-4 text-justify">
         {node.children?.map((child, index) => (
           <NodeRenderer key={index} node={child} />
         ))}
@@ -150,7 +363,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'numbered-list') {
     return (
-      <ol className="list-decimal list-inside mb-4 ml-4 text-justify text-xl">
+      <ol className="list-decimal list-inside mb-4 ml-4 text-justify">
         {node.children?.map((child, index) => (
           <NodeRenderer key={index} node={child} />
         ))}
@@ -160,7 +373,7 @@ const NodeRenderer = ({ node }) => {
 
   if (node.type === 'list-item') {
     return (
-      <li className="mb-1 text-justify text-xl">
+      <li className="mb-1 text-justify">
         {node.children?.map((child, index) => (
           <LeafRenderer key={index} leaf={child} />
         ))}
@@ -183,149 +396,7 @@ const NodeRenderer = ({ node }) => {
             }}
           />
           <div
-            className="hidden w-full h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg items-center justify-center text-gray-500 text-lgreact-dom_client.js?v=81ff1923:20103 Download the React DevTools for a better development experience: https://react.dev/link/react-devtools
-react-dom_client.js?v=81ff1923:4598 Uncaught Error: Objects are not valid as a React child (found: object with keys {type, content}). If you meant to render a collection of children, use an array instead.
-    at throwOnInvalidObjectTypeImpl (react-dom_client.js?v=81ff1923:4598:15)
-    at throwOnInvalidObjectType (react-dom_client.js?v=81ff1923:4606:13)
-    at reconcileChildFibersImpl (react-dom_client.js?v=81ff1923:5217:13)
-    at react-dom_client.js?v=81ff1923:5237:35
-    at reconcileChildren (react-dom_client.js?v=81ff1923:7182:53)
-    at beginWork (react-dom_client.js?v=81ff1923:8701:104)
-    at runWithFiberInDEV (react-dom_client.js?v=81ff1923:997:72)
-    at performUnitOfWork (react-dom_client.js?v=81ff1923:12561:98)
-    at workLoopSync (react-dom_client.js?v=81ff1923:12424:43)
-    at renderRootSync (react-dom_client.js?v=81ff1923:12408:13)
-throwOnInvalidObjectTypeImpl @ react-dom_client.js?v=81ff1923:4598
-throwOnInvalidObjectType @ react-dom_client.js?v=81ff1923:4606
-reconcileChildFibersImpl @ react-dom_client.js?v=81ff1923:5217
-(anonymous) @ react-dom_client.js?v=81ff1923:5237
-reconcileChildren @ react-dom_client.js?v=81ff1923:7182
-beginWork @ react-dom_client.js?v=81ff1923:8701
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11827
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<div>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-(anonymous) @ Articles.jsx:98
-Articles @ Articles.jsx:91
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11827
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<Articles>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-Dashboard @ Dashboard.jsx:35
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<Dashboard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-App @ App.jsx:55
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-(anonymous) @ main.jsx:8
-Articles.jsx:98 An error occurred in the <div> component.
-
-Consider adding an error boundary to your tree to customize error handling behavior.
-Visit https://react.dev/link/error-boundaries to learn more about error boundaries.
-
-defaultOnUncaughtError @ react-dom_client.js?v=81ff1923:6966
-logUncaughtError @ react-dom_client.js?v=81ff1923:7020
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-lane.callback @ react-dom_client.js?v=81ff1923:7048
-callCallback @ react-dom_client.js?v=81ff1923:5491
-commitCallbacks @ react-dom_client.js?v=81ff1923:5503
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:999
-commitLayoutEffectOnFiber @ react-dom_client.js?v=81ff1923:9976
-flushLayoutEffects @ react-dom_client.js?v=81ff1923:12924
-commitRoot @ react-dom_client.js?v=81ff1923:12803
-commitRootWhenReady @ react-dom_client.js?v=81ff1923:12016
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11950
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<div>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-(anonymous) @ Articles.jsx:98
-Articles @ Articles.jsx:91
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11827
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<Articles>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-Dashboard @ Dashboard.jsx:35
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<Dashboard>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-App @ App.jsx:55
-react_stack_bottom_frame @ react-dom_client.js?v=81ff1923:18509
-renderWithHooksAgain @ react-dom_client.js?v=81ff1923:5729
-renderWithHooks @ react-dom_client.js?v=81ff1923:5665
-updateFunctionComponent @ react-dom_client.js?v=81ff1923:7475
-beginWork @ react-dom_client.js?v=81ff1923:8525
-runWithFiberInDEV @ react-dom_client.js?v=81ff1923:997
-performUnitOfWork @ react-dom_client.js?v=81ff1923:12561
-workLoopSync @ react-dom_client.js?v=81ff1923:12424
-renderRootSync @ react-dom_client.js?v=81ff1923:12408
-performWorkOnRoot @ react-dom_client.js?v=81ff1923:11766
-performWorkOnRootViaSchedulerTask @ react-dom_client.js?v=81ff1923:13505
-performWorkUntilDeadline @ react-dom_client.js?v=81ff1923:36
-<App>
-exports.jsxDEV @ react_jsx-dev-runtime.js?v=81ff1923:247
-(anonymous) @ main.jsx:8
-"
+            className="hidden w-full h-32 bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg items-center justify-center text-gray-500 text-lg"
             style={{ display: 'none' }}
           >
             Failed to load image

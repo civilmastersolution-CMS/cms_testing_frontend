@@ -120,16 +120,16 @@ const Home = () => {
           </div>
           <div className="max-w-7xl xl:px-[80px] 2xl:px-[0px] 3xl:px-[0px] mx-auto flex items-center sm:justify-center md:justify-center lg:justify-center h-full relative z-10">
             {/* Left Content */}
-            <div className="flex-1 max-w-2xl flex flex-col sm:items-center md:items-center lg:items-center xl:items-start sm:pb-8 md:pb-8 lg:pb-8 xl:pb-0 2xl:pb-8 3xl:pb-8 pt-12">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl 2xl:text-9xl 3xl:text-9xl font-bold text-white mb-4 lg:mb-6 2xl:mb-6 3xl:mb-6 tracking-tight font-oswald mt-auto sm:text-center md:text-center lg:text-center xl:text-left">
+            <div className="flex-1 max-w-2xl flex flex-col items-center sm:items-center md:items-center lg:items-center xl:items-start sm:pb-8 md:pb-8 lg:pb-8 xl:pb-0 2xl:pb-8 3xl:pb-8 pt-12">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl 2xl:text-9xl 3xl:text-9xl font-bold text-white mb-4 lg:mb-6 2xl:mb-6 3xl:mb-6 tracking-tight font-oswald mt-auto text-center sm:text-center md:text-center lg:text-center xl:text-left">
                 <span className="sm:inline md:inline lg:inline xl:block">CIVIL</span>{" "}
                 <span className="sm:inline md:inline lg:inline xl:block">MASTER</span>{" "}
                 <span className="sm:inline md:inline lg:inline xl:block">SOLUTION</span>
               </h1>
-              <p className="text-gray-300 text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl mb-6 lg:mb-8 2xl:mb-8 3xl:mb-8 max-w-lg font-poppins font-light tracking-wide sm:text-center md:text-center lg:text-center xl:text-left">
+              <p className="text-gray-300 text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl mb-6 lg:mb-8 2xl:mb-8 3xl:mb-8 max-w-lg font-poppins font-light tracking-wide text-center sm:text-center md:text-center lg:text-center xl:text-left">
                 Leading specialist of industrial floor solution in Thailand
               </p>
-              <div className="relative inline-flex items-center sm:mx-auto md:mx-auto lg:mx-0">
+                <div className="relative inline-flex items-center mx-auto sm:mx-auto md:mx-auto lg:mx-0">
                 <div className="absolute left-0 top-0 bottom-0 w-2 lg:w-3 2xl:w-3 3xl:w-3 bg-cyan-400 sm:hidden md:hidden lg:block"></div>
                 <button
                   onClick={handleViewProducts}

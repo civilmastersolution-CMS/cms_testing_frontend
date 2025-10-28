@@ -74,8 +74,8 @@ const NewArticle = () => {
         <div className="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 z-10">
           <div className="text-center">
-            <h2 className="text-white text-6xl xl:text-6xl lg:text-4xl md:text-2xl sm:text-lg font-bold font-oswald mb-4">CIVIL MASTER SOLUTION</h2>
-            <p className="text-white text-2xl xl:text-2xl lg:text-xl md:text-lg sm:text-sm px-20 xl:px-20 lg:px-20 md:px-20 sm:px-[20px] max-w-[1600px] mx-auto font-oswald leading-relaxed">Welcome to the CMS News & Articles section, where we share insights, updates, and expert knowledge on industrial flooring solutions. Here, you'll find the latest company news, industry trends, and case studies from real projects across Thailand. Our articles are written by experienced design engineers, offering practical advice and technical know-how. We aim to keep our clients and partners informed about new technologies, best practices, and international standards in flooring solutions.</p>
+            <h2 className="text-white text-sm xl:text-6xl lg:text-4xl md:text-2xl font-bold font-oswald mb-4">CIVIL MASTER SOLUTION</h2>
+            <p className="text-white text-xs xl:text-xl lg:text-lg md:text-base px-20 sm:px-4 max-w-[1600px] sm:max-w-full mx-auto font-oswald leading-relaxed">Welcome to the CMS News & Articles section, where we share insights, updates, and expert knowledge on industrial flooring solutions. Here, you'll find the latest company news, industry trends, and case studies from real projects across Thailand. Our articles are written by experienced design engineers, offering practical advice and technical know-how. We aim to keep our clients and partners informed about new technologies, best practices, and international standards in flooring solutions.</p>
           </div>
         </div>
       </div>
@@ -182,7 +182,6 @@ const NewArticle = () => {
         </div>
       </section>
 
-    
       {/* Footer */}
       <Footer />
 

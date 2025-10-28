@@ -104,7 +104,7 @@ const Article = () => {
           {/* Small left accent + heading to match image */}
           <div className="flex items-center mb-6">
             <div className="w-10 h-px bg-cyan-400 mr-4" />
-            <h3 className="text-xl text-white font-semibold tracking-wider">Articles</h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-2xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl text-white font-semibold tracking-wider">Articles</h3>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -118,10 +118,10 @@ const Article = () => {
                   return (
                     <div>
                       {/* Centered title */}
-                      <h1 className="text-4xl md:text-5xl font-bold text-white text-left mb-6">{article.article_title}</h1>
-                      <p className="text-sm text-gray-400 text-left mb-2">Category: {article.category}</p>
+                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-8xl font-bold text-white text-left mb-6">{article.article_title}</h1>
+                      <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400 text-left mb-2">Category: {article.category}</p>
                       {article.keyword && article.keyword.length > 0 && (
-                        <p className="text-sm text-gray-400 text-left mb-6">
+                        <p className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-gray-400 text-left mb-6">
                           Keywords: {Array.isArray(article.keyword) ? article.keyword.join(', ') : article.keyword}
                         </p>
                       )}
@@ -131,11 +131,122 @@ const Article = () => {
                         <style>
                           {`
                             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+                            .article-content {
+                              font-size: 18px;
+                              line-height: 1.7;
+                              max-width: 92%;
+                            }
+                            .article-content h1 {
+                              font-size: 30px;
+                            }
+                            .article-content h2 {
+                              font-size: 26px;
+                            }
+                            .article-content h3 {
+                              font-size: 23px;
+                            }
+                            @media (min-width: 390px) {
+                              .article-content {
+                                font-size: 20px;
+                                line-height: 1.75;
+                                max-width: 85%;
+                              }
+                              .article-content h1 {
+                                font-size: 36px;
+                              }
+                              .article-content h2 {
+                                font-size: 30px;
+                              }
+                              .article-content h3 {
+                                font-size: 26px;
+                              }
+                            }
+                            @media (min-width: 768px) {
+                              .article-content {
+                                font-size: 22px;
+                                line-height: 1.8;
+                                max-width: 70ch;
+                              }
+                              .article-content h1 {
+                                font-size: 44px;
+                              }
+                              .article-content h2 {
+                                font-size: 36px;
+                              }
+                              .article-content h3 {
+                                font-size: 30px;
+                              }
+                            }
+                            @media (min-width: 1024px) {
+                              .article-content {
+                                font-size: 24px;
+                                line-height: 1.85;
+                                max-width: 70ch;
+                              }
+                              .article-content h1 {
+                                font-size: 52px;
+                              }
+                              .article-content h2 {
+                                font-size: 42px;
+                              }
+                              .article-content h3 {
+                                font-size: 36px;
+                              }
+                            }
+                            @media (min-width: 1280px) {
+                              .article-content {
+                                font-size: 26px;
+                                line-height: 1.9;
+                                max-width: 75ch;
+                              }
+                              .article-content h1 {
+                                font-size: 60px;
+                              }
+                              .article-content h2 {
+                                font-size: 48px;
+                              }
+                              .article-content h3 {
+                                font-size: 40px;
+                              }
+                            }
+                            @media (min-width: 1536px) {
+                              .article-content {
+                                font-size: 28px;
+                                line-height: 2.0;
+                                max-width: 80ch;
+                              }
+                              .article-content h1 {
+                                font-size: 70px;
+                              }
+                              .article-content h2 {
+                                font-size: 56px;
+                              }
+                              .article-content h3 {
+                                font-size: 46px;
+                              }
+                            }
+                            @media (min-width: 1920px) {
+                              .article-content {
+                                font-size: 30px;
+                                line-height: 2.0;
+                                max-width: 85ch;
+                              }
+                              .article-content h1 {
+                                font-size: 80px;
+                              }
+                              .article-content h2 {
+                                font-size: 64px;
+                              }
+                              .article-content h3 {
+                                font-size: 52px;
+                              }
+                            }
                             .article-content img {
                               height: auto;
                               display: block;
                               margin: 1rem auto;
                               border: 1px solid #374151;
+                              max-width: 100%;
                             }
                             .article-content table {
                               border-collapse: collapse;
@@ -156,6 +267,11 @@ const Article = () => {
                             .article-content p {
                               text-align: justify;
                               margin-bottom: 1rem;
+                            }
+                            .article-content h1, .article-content h2, .article-content h3, .article-content h4, .article-content h5, .article-content h6 {
+                              margin-top: 1.5rem;
+                              margin-bottom: 0.5rem;
+                              font-weight: 600;
                             }
                             .article-content * {
                               color: white !important;
@@ -205,9 +321,9 @@ const Article = () => {
                       <div className="flex justify-end mt-8">
                         <button
                           onClick={() => navigate('/news-article')}
-                          className="hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm transition-colors duration-200"
+                          className="hover:text-cyan-300 text-white font-medium py-1 px-3 rounded text-sm sm:text-base md:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl transition-colors duration-200"
                         >
-                          <span className="text-4xl mr-1">←</span> Back to All Articles
+                          <span className="text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl mr-1">←</span> Back to All Articles
                         </button>
                       </div>
                     </div>
@@ -215,7 +331,7 @@ const Article = () => {
                 })()
               ) : (
                 <div className="text-center py-12">
-                  <div className="text-gray-400 text-lg">Select an article to read</div>
+                  <div className="text-gray-400 text-base sm:text-lg md:text-lg lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl">Select an article to read</div>
                 </div>
               )}
             </div>
@@ -224,7 +340,7 @@ const Article = () => {
             <div className="lg:col-span-1">
               <div className="flex items-center mb-6">
                 <div className="w-10 h-px bg-cyan-400 mr-4" />
-                <h4 className="text-lg text-white font-semibold tracking-wider">All Articles</h4>
+                <h4 className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl text-white font-semibold tracking-wider">All Articles</h4>
               </div>
               <div className="space-y-2">
                 {articlesData.map((article, index) => (
@@ -237,10 +353,10 @@ const Article = () => {
                         : 'hover:bg-gray-700'
                     }`}
                   >
-                    <h5 className="text-white font-medium text-sm leading-tight">{article.article_title}</h5>
+                    <h5 className="text-sm sm:text-base md:text-base lg:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-white font-medium leading-tight">{article.article_title}</h5>
                     <div className="flex items-center justify-between mt-1">
-                      <p className="text-gray-400 text-xs">{article.category || 'Uncategorized'}</p>
-                      <button className="text-cyan-400 hover:text-cyan-300 text-xs font-medium transition-colors">
+                      <p className="text-gray-400 text-xs sm:text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl">{article.category || 'Uncategorized'}</p>
+                      <button className="text-cyan-400 hover:text-cyan-300 text-xs sm:text-sm md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl font-medium transition-colors">
                         Read More →
                       </button>
                     </div>
