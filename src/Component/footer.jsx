@@ -5,8 +5,8 @@ import './footer.css'; // Importing a CSS file for font styles
 const Footer = () => {
   return (
     <footer className="bg-white py-12 border-t-4 border-cyan-400 font-oswald">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-8 md:px-4">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 ">
           {/* Logo and Description */}
           <div>
             <div className="flex items-center mb-4">
@@ -50,9 +50,9 @@ const Footer = () => {
           </div>
           
           {/* Contact */}
-          <div className="w-96">
+          <div className="w-[300px] lg:w-[200px]">
             <h4 className="text-black font-semibold mb-4">Contact</h4>
-            <div className="text-black text-sm space-y-4">
+            <div className="text-black text-sm space-y-4 ">
               <p>16 Soi Nawamin 163, Intersection 6, Ram Inthra Subdistrict,
                  Khan Na Yao District, Bangkok 10230</p>
               <p>081-710-3444 / 062-479-1615</p>
