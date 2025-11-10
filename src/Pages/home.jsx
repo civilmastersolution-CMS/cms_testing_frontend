@@ -121,16 +121,16 @@ const Home = () => {
           <div className="max-w-7xl xl:px-[80px] 2xl:px-[0px] 3xl:px-[0px] mx-auto flex items-center sm:justify-center md:justify-center lg:justify-center h-full relative z-10">
             {/* Left Content */}
             <div className="flex-1 max-w-2xl flex flex-col items-center sm:items-center md:items-center lg:items-center xl:items-start sm:pb-8 md:pb-8 lg:pb-8 xl:pb-0 2xl:pb-8 3xl:pb-8 pt-12">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-7xl 2xl:text-9xl 3xl:text-9xl font-bold text-white mb-4 lg:mb-6 2xl:mb-6 3xl:mb-6 tracking-tight font-oswald mt-auto text-center sm:text-center md:text-center lg:text-center xl:text-left">
+              <h1 className="text-5xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-7xl 2xl:text-9xl 3xl:text-9xl font-bold text-white mb-4 lg:mb-6 2xl:mb-6 3xl:mb-6 tracking-tight font-oswald mt-auto text-center sm:text-center md:text-center lg:text-center xl:text-left">
                 <span className="sm:inline md:inline lg:inline xl:block">CIVIL</span>{" "}
                 <span className="sm:inline md:inline lg:inline xl:block">MASTER</span>{" "}
                 <span className="sm:inline md:inline lg:inline xl:block">SOLUTION</span>
               </h1>
-              <p className="text-gray-300 text-base md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl 3xl:text-2xl mb-6 lg:mb-8 2xl:mb-8 3xl:mb-8 max-w-lg font-poppins font-light tracking-wide text-center sm:text-center md:text-center lg:text-center xl:text-left">
+              <p className="text-white text-base sm:text-lg md:text-xl lg:text-2xl xl:text-xl 2xl:text-2xl 3xl:text-2xl mb-6 lg:mb-8 2xl:mb-8 3xl:mb-8 max-w-lg font-poppins font-light tracking-wide text-center sm:text-center md:text-center lg:text-center xl:text-left">
                 Leading specialist of industrial floor solution in Thailand
               </p>
                 <div className="relative inline-flex items-center mx-auto sm:mx-auto md:mx-auto lg:mx-0">
-                <div className="absolute left-0 top-0 bottom-0 w-2 lg:w-3 2xl:w-3 3xl:w-3 bg-cyan-400 sm:hidden md:hidden lg:block"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-2 lg:w-3 2xl:w-3 3xl:w-3 bg-cyan-400"></div>
                 <button
                   onClick={handleViewProducts}
                   className="bg-white text-gray-900 px-6 lg:px-8 xl:px-10 2xl:px-10 3xl:px-10 py-3 lg:py-4 2xl:py-4 3xl:py-4 pl-6 lg:pl-8 2xl:pl-8 3xl:pl-8 text-sm lg:text-base 2xl:text-base 3xl:text-base font-semibold font-poppins hover:bg-gray-100 transition-colors cursor-pointer"
@@ -141,7 +141,7 @@ const Home = () => {
             </div>
 
             {/* Product Images - Positioned to match reference */}
-            <div className="hidden xl:block xl:flex-1 xl:relative xl:h-full xl:transform xl:origin-center xl:scale-75  2xl:scale-95 3xl:scale-100">
+            <div className="hidden xl:block xl:flex-1 xl:relative xl:h-full xl:transform xl:origin-center xl:scale-75 xl:w-[]  2xl:scale-95 3xl:scale-100">
               {/* Top right image - metal bars */}
               <div
                 className="absolute right-3 lg:right-4 xl:right-1 2xl:right-6 3xl:right-6 top-12 lg:top-10 xl:top-13 2xl:top-20 3xl:top-20 w-32 lg:w-40 xl:w-48 2xl:w-48 3xl:w-48 h-32 lg:h-40 xl:h-48 2xl:h-48 3xl:h-48 shadow-lg overflow-hidden"
@@ -180,9 +180,9 @@ const Home = () => {
 
               {/* Bottom right image - fibers */}
               <div
-                className="absolute right-1 lg:right-[1px] xl:right-0 2xl:right-2 3xl:right-2 bottom-12 lg:bottom-4 xl:bottom-20 2xl:bottom-20 3xl:bottom-20 w-40 lg:w-48 xl:w-56 2xl:w-56 3xl:w-56 h-40 lg:h-48 xl:h-56 2xl:h-56 3xl:h-56 shadow-lg overflow-hidden"
+                className="absolute lg:right-[1px] 2xl:right-2 3xl:right-2 bottom-12 lg:bottom-4 xl:bottom-10 2xl:bottom-20 3xl:bottom-20 w-40 lg:w-48 xl:w-56 2xl:w-56 3xl:w-56 h-40 lg:h-48 xl:h-56 2xl:h-56 3xl:h-56 shadow-lg overflow-hidden"
                 style={{ border: "3px solid white" }}
-              >
+              >   
                 <img
                   src="/images/heroSection/product4.jpg"
                   alt="Product 4"
@@ -258,7 +258,7 @@ const Home = () => {
                     Thailand.
                   </h3>
                 </div>
-                <p className="text-white text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-3xl 3xl:text-4xl leading-relaxed text-justify">
+                <p className="text-white text-xs md:text-base lg:text-lg xl:text-xl 2xl:text-3xl 3xl:text-4xl leading-relaxed text-justify">
                   Founded with a vision to provide durable, safe, and
                   high-performance flooring systems, we have grown into a
                   trusted partner for factories, warehouses, logistics centers,
@@ -268,6 +268,7 @@ const Home = () => {
                   to on-site supervision. With custom-fit solutions and a
                   reputation built on trust, we help industries build stronger
                   foundations for the future.
+                 
                 </p>
               </div>
             </div>
@@ -291,7 +292,7 @@ const Home = () => {
                   CMS has officially partnered with Ductil GmbH.
                 </h3>
               </div>
-              <p className="text-gray-600 text-sm leading-relaxed text-justify">
+              <p className="text-gray-600 text-xs md:text-base lg:text-lg xl:text-xl 2xl:text-3xl 3xl:text-4xl leading-relaxed text-justify">
                 Through this collaboration, we are joining forces with Ductil
                 GmbH, a German company led by Dr. Ralf Winterberg, who brings
                 nearly 30 years of expertise in fiber technology. This
@@ -400,7 +401,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="p-4 lg:p-5 xl:p-6 2xl:p-6 3xl:p-6 bg-gray-800">
-                <p className="text-white sm:text-sm lg:text-base 2xl:text-xl 3xl:text-xl 2xl:mb-[20px] leading-relaxed text-justify">
+                <p className="text-white sm:text-xs md:text-sm lg:text-base 2xl:text-xl 3xl:text-xl 2xl:mb-[20px] leading-relaxed text-justify">
                   Our specialists offer on-site supervision to guarantee that
                   floor installation and construction processes meet high
                   quality standards. We oversee every step to ensure quality,
@@ -428,7 +429,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="p-4 lg:p-5 lg:pb-[44px] xl:p-6 2xl:pb-[45px] 2xl:p-6 3xl:pb-[45px] 3xl:p-6 bg-gray-800">
-                <p className="text-white sm:text-sm lg:text-base 2xl:text-xl 3xl:text-xl leading-relaxed text-justify">
+                <p className="text-white sm:text-xs md:text-sm lg:text-base 2xl:text-xl 3xl:text-xl leading-relaxed text-justify">
                   We provide expert consultation to help clients select the most
                   suitable industrial floor solutions. From assessing site
                   conditions to recommending materials and techniques, our team

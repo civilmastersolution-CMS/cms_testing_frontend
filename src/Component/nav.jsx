@@ -55,14 +55,14 @@ const Nav = () => {
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-          <span className="uppercase text-sm font-medium">Menu</span>
+          <span className="uppercase text-xs sm:text-sm font-medium">Menu</span>
         </button>
 
         {menuOpen && (
           <div className="absolute right-0 mt-2 w-56 bg-gray-800 rounded shadow-lg py-2 z-50">
             <Link
               to="/home"
-              className={`block px-4 py-2 text-sm uppercase tracking-wide ${
+              className={`block px-4 py-2 text-xs sm:text-sm uppercase tracking-wide ${
                 isActive('/home')
                   ? 'text-cyan-400'
                   : 'text-white hover:bg-gray-700'
@@ -73,7 +73,7 @@ const Nav = () => {
             </Link>
             <Link
               to="/product"
-              className={`block px-4 py-2 text-sm uppercase tracking-wide ${
+              className={`block px-4 py-2 text-xs sm:text-sm uppercase tracking-wide ${
                 isActive('/product')
                   ? 'text-cyan-400'
                   : 'text-white hover:bg-gray-700'
@@ -84,7 +84,7 @@ const Nav = () => {
             </Link>
             <Link
               to="/projects-reference"
-              className={`block px-4 py-2 text-sm uppercase tracking-wide ${
+              className={`block px-4 py-2 text-xs sm:text-sm uppercase tracking-wide ${
                 isActive('/projects-reference')
                   ? 'text-cyan-400'
                   : 'text-white hover:bg-gray-700'
@@ -95,7 +95,7 @@ const Nav = () => {
             </Link>
             <Link
               to="/news-article"
-              className={`block px-4 py-2 text-sm uppercase tracking-wide ${
+              className={`block px-4 py-2 text-xs sm:text-sm uppercase tracking-wide ${
                 isActive('/news-article')
                   ? 'text-cyan-400'
                   : 'text-white hover:bg-gray-700'
@@ -112,7 +112,7 @@ const Nav = () => {
       <div className="hidden md:flex items-center space-x-8">
         <Link
           to="/home"
-          className={`text-sm font-medium transition-colors uppercase tracking-wide ${
+          className={`text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl font-medium transition-colors uppercase tracking-wide ${
             isActive('/home')
               ? 'text-cyan-400'
               : 'text-white hover:text-cyan-400'
@@ -122,7 +122,7 @@ const Nav = () => {
         </Link>
         <Link
           to="/product"
-          className={`text-sm font-medium transition-colors uppercase tracking-wide ${
+          className={`text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl font-medium transition-colors uppercase tracking-wide ${
             isActive('/product')
               ? 'text-cyan-400'
               : 'text-white hover:text-cyan-400'
@@ -132,7 +132,7 @@ const Nav = () => {
         </Link>
         <Link
           to="/projects-reference"
-          className={`text-sm font-medium transition-colors uppercase tracking-wide ${
+          className={`text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl font-medium transition-colors uppercase tracking-wide ${
             isActive('/projects-reference')
               ? 'text-cyan-400'
               : 'text-white hover:text-cyan-400'
@@ -142,7 +142,7 @@ const Nav = () => {
         </Link>
         <Link
           to="/news-article"
-          className={`text-sm font-medium transition-colors uppercase tracking-wide ${
+          className={`text-xs md:text-sm lg:text-sm xl:text-base 2xl:text-lg 3xl:text-xl font-medium transition-colors uppercase tracking-wide ${
             isActive('/news-article')
               ? 'text-cyan-400'
               : 'text-white hover:text-cyan-400'

@@ -96,7 +96,7 @@ const Article = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#000A14]" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+    <div className="min-h-screen bg-[#000A14]" style={{ fontFamily: "'Arial', sans-serif" }}>
       <Nav />
       {/* Content Section */}
       <section className="py-8 bg-[#000A14]">
@@ -130,7 +130,6 @@ const Article = () => {
                       <div className="text-white">
                         <style>
                           {`
-                            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
                             .article-content {
                               font-size: 18px;
                               line-height: 1.7;
@@ -275,7 +274,7 @@ const Article = () => {
                             }
                             .article-content * {
                               color: white !important;
-                              font-family: 'Montserrat', sans-serif !important;
+                              font-family: 'Arial', sans-serif !important;
                             }
                             .article-content a {
                               color: #22d3ee !important;

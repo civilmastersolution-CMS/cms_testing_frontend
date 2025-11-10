@@ -162,22 +162,22 @@ const ProductCard = ({
         </div>
         <div className="relative z-20">
           <h2
-            className={`text-[20px] sm:text-[18px] lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-bold mb-4 ${
+            className={`sm:text-[23px] md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-5xl font-bold mb-4 ${
               isDark ? "text-cyan-400" : "text-gray-900"
             }`}
           >
             {title}
           </h2>
-          <p className="text-[14px] sm:text-[12px] lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-2xl mb-4">
+          <p className="text-[14px] sm:text-[12px] md:text-lg lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-xl mb-4">
             {description}
           </p>
 
           {performance && (
-            <div className="mb-4">
-              <p className="text-[16px] sm:text-[14px] lg:text-[18px] xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold mb-2">
+            <div className="mb-4 ">
+              <p className="sm:text-[10px] md:text-md lg:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-8xl font-semibold mb-2">
                 Performances
               </p>
-              <ul className="text-[16px] lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-3xl space-y-1">
+              <ul className="sm:text-xs md:text-base lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-xl space-y-1">
                 {performance.map((perf, index) => (
                   <li key={index}>• {perf}</li>
                 ))}
@@ -186,10 +186,10 @@ const ProductCard = ({
           )}
           {main_applicationPoints && (
             <div className="mb-4">
-              <h3 className="text-[20px] lg:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold mb-2">
+              <h3 className="sm:text-[10px] md:text-md lg:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-8xl font-semibold mb-2">
                 Main Applications
               </h3>
-              <ul className="text-[16px] lg:text-[16px] xl:text-lg 2xl:text-2xl 3xl:text-3xl space-y-1">
+              <ul className="sm:text-xs md:text-base lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-xl space-y-1">
                 {main_applicationPoints.map((point, index) => (
                   <li key={index}>• {point}</li>
                 ))}
@@ -198,10 +198,10 @@ const ProductCard = ({
           )}
           {benefit && (
             <div className="mb-6">
-              <h3 className="text-[20px] lg:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-5xl font-semibold mb-2">
+              <h3 className="sm:text-[10px] md:text-md lg:text-xl xl:text-3xl 2xl:text-4xl 3xl:text-8xl font-semibold mb-2">
                 Benefits
               </h3>
-              <ul className="text-[16px] lg:text-[16px] xl:text-lg 2xl:text-2xl 3xl:text-3xl space-y-1">
+              <ul className="sm:text-xs md:text-base lg:text-[16px] xl:text-lg 2xl:text-xl 3xl:text-xl space-y-1">
                 {benefit.map((benefit, index) => (
                   <li key={index}>• {benefit}</li>
                 ))}
@@ -212,7 +212,7 @@ const ProductCard = ({
             <div className="absolute left-0 top-0 bottom-0 w-3 bg-cyan-400" />
             <button
               onClick={handleOpenRequestInfo}
-              className="bg-white text-gray-900 px-10 py-4 pl-8 text-[14px] lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-semibold font-poppins hover:bg-gray-100 transition-colors cursor-pointer rounded-none border-0 shadow-none"
+              className="bg-white text-gray-900 px-10 py-4 pl-8 sm:text-xs md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 3xl:text-3xl font-semibold font-poppins hover:bg-gray-100 transition-colors cursor-pointer rounded-none border-0 shadow-none"
               style={{ boxShadow: "none", borderRadius: 0 }}
             >
               REQUEST MORE INFORMATION

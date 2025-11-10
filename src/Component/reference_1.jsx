@@ -228,7 +228,7 @@ const Reference1 = ({
               : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="grid grid-cols-[110px_1fr] gap-y-1 text-sm md:text-base">
+          <div className="grid grid-cols-[110px_1fr] gap-y-1 text-sm lg:text- md:text-base">
             <span className="text-gray-300">Location</span>
             <span>: {location}</span>
             <span className="text-gray-300">Site Area</span>
@@ -375,9 +375,9 @@ const Reference1 = ({
             maxWidth: "600px",
           }}
         >
-          <div className="text-white flex justify-center items-center mb-[20px]">
+          <div className="text-white flex justify-center items-center lg:mb-0 mb-[20px]">
             <div className="text-left">
-              <div className="grid grid-cols-[120px_1fr] text-lg xl:text-base">
+              <div className="grid grid-cols-[120px_1fr] text-lg lg:text-sm lg:w-[450px] xl:text-base">
                 <span className="text-gray-300">Location </span>
                 <span>: {location}</span>
 

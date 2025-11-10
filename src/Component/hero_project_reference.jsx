@@ -14,6 +14,8 @@ const HeroProjectReference = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   // Fetch favorite projects from API
   useEffect(() => {
@@ -61,6 +63,31 @@ const HeroProjectReference = () => {
 
   const goToSlide = (index) => {
     setCurrentSlide(index);
+  };
+
+  // Touch handlers for swipe gestures
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+    
+    if (isLeftSwipe && currentSlide < projects.length - 1) {
+      nextSlide();
+    }
+    if (isRightSwipe && currentSlide > 0) {
+      prevSlide();
+    }
   };
 
   const handleViewProjectReferences = () => {
@@ -174,11 +201,14 @@ const HeroProjectReference = () => {
           <div
             className="w-full h-full md:w-[80%] md:h-[80%] lg:w-full lg:h-full bg-cover 2xl:bg-contain bg-no-repeat bg-center relative transition-all duration-500"
             style={{ backgroundImage: `url('${currentProject.image}')` }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            {/* Navigation Arrows */}
+            {/* Navigation Arrows - Hidden on sm and md breakpoints */}
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
+              className="absolute sm:hidden md:hidden lg:inline left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
             >
               <svg
                 className="w-6 h-6 text-white"
@@ -197,7 +227,7 @@ const HeroProjectReference = () => {
 
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
+              className="absolute sm:hidden md:hidden lg:inline right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-75 transition-all duration-300 z-20 p-2 rounded-lg"
             >
               <svg
                 className="w-6 h-6 text-white"
@@ -217,24 +247,24 @@ const HeroProjectReference = () => {
             {/* Content Overlay */}
             <div className="absolute bottom-0.5 sm:bottom-1 left-2 sm:left-3 right-2 sm:right-3 z-10">
               <div className="max-w-4xl">
-                <h3 className="text-sm 3xl:text-5xl 2xl:text-4xl xl:text-3xl lg:text-2xl sm:text-[10px] font-bold text-white bg-gray-900 inline-block px-3 sm:px-2 py-1 sm:py-1 mb-1 sm:mb-1 transition-all duration-500 mr-2">
+                <h3 className=" 3xl:text-4xl 2xl:text-4xl xl:text-3xl lg:text-2xl md:text-lg sm:text-[10px] font-bold text-white bg-gray-900 inline-block px-3 sm:px-2 py-1 sm:py-1 mb-1 sm:mb-1 3xl:px-1 3xl:py-2 transition-all duration-500 mr-2">
                   {currentProject.title}
                 </h3>
                 {currentProject.location && (
-                  <p className="text-[8px] 3xl:text-2xl 2xl:text-xl xl:text-lg lg:text-base sm:text-[8px] text-white bg-black bg-opacity-50 inline-block px-1 sm:px-2 py-0.5 sm:py-1">
+                  <p className="3xl:text-2xl 2xl:text-xl xl:text-lg lg:text-base md:text-lg sm:text-[8px] text-white bg-black bg-opacity-50 inline-block px-1 sm:px-2 py-0.5 sm:py-1">
                     <FontAwesomeIcon
                       icon={faLocationDot}
-                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] md:w-[20px] md:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.location} |
                     <FontAwesomeIcon
                       icon={faCalendar}
-                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] md:w-[20px] md:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.date_time} |
                     <FontAwesomeIcon
                       icon={faChartArea}
-                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] w-[16px] h-[12px]"
+                      className="sm:w-[10px] sm:h-[8px] 3xl:w-[24px] 3xl:h-[20px] 2xl:w-[22px] 2xl:h-[18px] xl:w-[20px] xl:h-[16px] lg:w-[20px] lg:h-[16px] md:w-[20px] md:h-[16px] w-[16px] h-[12px]"
                     />
                     {currentProject.site_area}
                   </p>
